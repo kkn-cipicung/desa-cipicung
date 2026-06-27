@@ -9,8 +9,9 @@
 </svelte:head>
 
 <!-- Scroll Container for Snapping -->
-<div class="flex flex-col h-[calc(100vh-64px)] w-full overflow-y-auto snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-	
+<div
+	class="flex flex-col h-[calc(100vh-64px)] w-full overflow-y-auto snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+>
 	<!-- Hero Section -->
 	<div
 		class="relative w-full min-h-[calc(100vh-64px)] shrink-0 flex flex-col items-center justify-center overflow-hidden bg-slate-900 snap-start"
@@ -33,12 +34,7 @@
 			</h1>
 
 			<div class="mt-8">
-				<Button 
-					href="/profile"
-					variant="secondary"
-					size="lg"
-					class="bg-blue-800 text-white"
-				>
+				<Button href="/profile" variant="secondary" size="lg" class="bg-blue-800 text-white">
 					Jelajahi Desa
 				</Button>
 			</div>
@@ -46,13 +42,16 @@
 	</div>
 
 	<!-- Overview Section -->
-	<div class="w-full shrink-0 min-h-[calc(100vh-64px)] snap-start flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center bg-brand-green">
+	<div
+		class="w-full shrink-0 min-h-[calc(100vh-64px)] snap-start flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center bg-brand-green"
+	>
 		<Overview />
 	</div>
 
 	<!-- Highlight Section -->
-	<div class="w-full shrink-0 min-h-[calc(100vh-64px)] snap-start flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center">
+	<div
+		class="w-full shrink-0 min-h-[calc(100vh-64px)] snap-start flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center"
+	>
 		<Highlight />
 	</div>
-
 </div>

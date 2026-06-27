@@ -7,7 +7,7 @@
 		{ name: 'Beranda', href: '/' },
 		{ name: 'Profil', href: '/profile' },
 		{ name: 'Katalog', href: '/katalog' },
-		{ name: 'Media Sosial', href: '/social-media'}
+		{ name: 'Media Sosial', href: '/social-media' }
 	];
 
 	function isActive(href: string) {

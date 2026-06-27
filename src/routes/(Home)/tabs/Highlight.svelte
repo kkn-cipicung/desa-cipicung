@@ -10,8 +10,9 @@
 
 		<!-- Scroll container: stretches to screen edges on mobile, standard grid on desktop -->
 		<div class="w-full">
-			<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 md:grid md:grid-cols-3 md:gap-6 lg:gap-8 w-full pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-6 md:px-12 lg:px-24">
-				
+			<div
+				class="flex overflow-x-auto snap-x snap-mandatory gap-4 md:grid md:grid-cols-3 md:gap-6 lg:gap-8 w-full pb-4 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-6 md:px-12 lg:px-24"
+			>
 				<!-- Card 1 -->
 				<div
 					class="flex flex-col border border-border rounded-xl overflow-hidden bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow w-[70vw] sm:w-[45vw] md:w-auto shrink-0 snap-center"
@@ -21,10 +22,12 @@
 					</div>
 					<div class="p-4 md:p-6 flex flex-col flex-grow space-y-2 md:space-y-4">
 						<h3 class="text-lg md:text-xl font-bold text-foreground">Gula Aren</h3>
-						<p class="text-sm md:text-base text-muted-foreground leading-relaxed flex-grow line-clamp-3">
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt est ipsam fugiat quaerat
-							omnis distinctio, saepe deleniti eaque minima? Eum eligendi error sapiente officia et,
-							temporibus ipsa eos sint totam?
+						<p
+							class="text-sm md:text-base text-muted-foreground leading-relaxed flex-grow line-clamp-3"
+						>
+							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt est ipsam fugiat
+							quaerat omnis distinctio, saepe deleniti eaque minima? Eum eligendi error sapiente
+							officia et, temporibus ipsa eos sint totam?
 						</p>
 						<a
 							href="/katalog/kopi"
@@ -44,10 +47,12 @@
 					</div>
 					<div class="p-4 md:p-6 flex flex-col flex-grow space-y-2 md:space-y-4">
 						<h3 class="text-lg md:text-xl font-bold text-foreground">Tusuk Sate</h3>
-						<p class="text-sm md:text-base text-muted-foreground leading-relaxed flex-grow line-clamp-3">
+						<p
+							class="text-sm md:text-base text-muted-foreground leading-relaxed flex-grow line-clamp-3"
+						>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus officia nesciunt est
-							maxime? Temporibus, amet. Nisi modi quaerat facere velit! Autem porro numquam dolor rerum
-							quas nisi expedita quaerat quibusdam.
+							maxime? Temporibus, amet. Nisi modi quaerat facere velit! Autem porro numquam dolor
+							rerum quas nisi expedita quaerat quibusdam.
 						</p>
 						<a
 							href="/katalog/keramik"
@@ -67,7 +72,9 @@
 					</div>
 					<div class="p-4 md:p-6 flex flex-col flex-grow space-y-2 md:space-y-4">
 						<h3 class="text-lg md:text-xl font-bold text-foreground">Arang Briket</h3>
-						<p class="text-sm md:text-base text-muted-foreground leading-relaxed flex-grow line-clamp-3">
+						<p
+							class="text-sm md:text-base text-muted-foreground leading-relaxed flex-grow line-clamp-3"
+						>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
 						</p>
 						<a
@@ -78,7 +85,6 @@
 						</a>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
