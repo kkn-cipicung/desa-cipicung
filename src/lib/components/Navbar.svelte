@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="hidden md:flex justify-center space-x-4 lg:space-x-8">
-				{#each menuItems as item}
+				{#each menuItems as item (item.name)}
 					<a
 						href={item.href}
 						onclick={() => (isMobileMenuOpen = false)}
@@ -112,7 +112,7 @@
 			id="mobile-menu"
 		>
 			<div class="space-y-1 px-4 py-3">
-				{#each menuItems as item}
+				{#each menuItems as item (item.name)}
 					<a
 						href={item.href}
 						onclick={() => (isMobileMenuOpen = false)}
