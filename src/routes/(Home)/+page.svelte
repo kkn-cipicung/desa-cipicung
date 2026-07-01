@@ -8,13 +8,10 @@
 	<title>Desa Cipicung - Portal Resmi</title>
 </svelte:head>
 
-<!-- Scroll Container for Snapping -->
-<div
-	class="flex flex-col h-[calc(100vh-64px)] w-full overflow-y-auto snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
->
+<div class="flex w-full flex-col scroll-smooth">
 	<!-- Hero Section -->
 	<div
-		class="relative w-full min-h-[calc(100vh-64px)] shrink-0 flex flex-col items-center justify-center overflow-hidden bg-slate-900 snap-start"
+		class="relative flex min-h-[calc(100vh-64px)] w-full shrink-0 flex-col items-center justify-center overflow-hidden bg-slate-900"
 	>
 		<img
 			src="/hero-image.JPG"
@@ -30,7 +27,7 @@
 			<h1
 				class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white font-sans drop-shadow-lg leading-tight select-none"
 			>
-				Selamat Datang di Desa Mandiri
+				Selamat Datang di Desa Cipicung
 			</h1>
 
 			<div class="mt-8">
@@ -43,14 +40,14 @@
 
 	<!-- Overview Section -->
 	<div
-		class="w-full shrink-0 min-h-[calc(100vh-64px)] snap-start flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center bg-brand-green"
+		class="flex min-h-[calc(100vh-64px)] w-full shrink-0 flex-col items-center justify-start bg-brand-green pt-8 md:justify-center md:pt-0"
 	>
 		<Overview />
 	</div>
 
 	<!-- Highlight Section -->
 	<div
-		class="w-full shrink-0 min-h-[calc(100vh-64px)] snap-start flex flex-col items-center justify-start pt-8 md:pt-0 md:justify-center"
+		class="flex min-h-[calc(100vh-64px)] w-full shrink-0 flex-col items-center justify-start pt-8 md:justify-center md:pt-0"
 	>
 		<Highlight />
 	</div>

@@ -2,6 +2,7 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -16,9 +17,12 @@
 	/>
 </svelte:head>
 
-<div class="min-h-screen bg-[#fafdfc] font-sans antialiased text-slate-800">
+<div class="flex flex-col min-h-screen bg-[#fafdfc] font-sans antialiased text-slate-800">
 	<Navbar />
-	<main>
+	<main class="flex-grow flex flex-col">
 		{@render children()}
 	</main>
+	<div class="relative z-10 mt-auto">
+		<Footer />
+	</div>
 </div>

@@ -20,7 +20,7 @@
 </script>
 
 <nav
-	class="sticky top-0 z-50 w-full border-b border-[#e1f2ed] bg-[#effdf8]/90 backdrop-blur-md transition-all duration-300"
+	class="sticky top-0 z-[9999] w-full border-b border-[#e1f2ed] bg-[#effdf8]/90 backdrop-blur-md transition-all duration-300"
 >
 	<div class="w-full px-6 md:px-12">
 		<div class="flex h-16 items-center justify-between">
