@@ -1,5 +1,4 @@
 import prettier from 'eslint-config-prettier';
-import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import svelte from 'eslint-plugin-svelte';
