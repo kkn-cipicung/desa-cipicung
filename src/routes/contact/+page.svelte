@@ -12,9 +12,9 @@
 	}
 
 	const socials = [
-		{ label: 'Instagram', handle: '@desacipicung', href: 'https://instagram.com/' },
-		{ label: 'Facebook', handle: 'Desa Cipicung Sukatani', href: 'https://facebook.com/' },
-		{ label: 'YouTube', handle: 'Desa Cipicung', href: 'https://youtube.com/' }
+		{ label: 'Instagram', handle: '@cipicungpemdes', href: 'https://instagram.com/cipicungpemdes' },
+		{ label: 'TikTok', handle: '@pemdes.cipicung', href: 'https://tiktok.com/@pemdes.cipicung' },
+		{ label: 'YouTube', handle: '@desacipicung-x8k', href: 'https://youtube.com/@desacipicung-x8k' }
 	];
 </script>
 

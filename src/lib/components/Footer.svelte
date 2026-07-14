@@ -66,7 +66,7 @@
 					</li>
 					<li>
 						<a
-							href="https://instagram.com/"
+							href="https://instagram.com/cipicungpemdes"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="text-ink-soft hover:text-clay"
@@ -76,12 +76,12 @@
 					</li>
 					<li>
 						<a
-							href="https://facebook.com/"
+							href="https://tiktok.com/@pemdes.cipicung"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="text-ink-soft hover:text-clay"
 						>
-							Facebook
+							TikTok
 						</a>
 					</li>
 				</ul>
