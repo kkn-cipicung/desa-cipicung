@@ -7,7 +7,7 @@ export type { AxiosError };
 import Axios from 'axios';
 
 const axios = Axios.create({
-	baseURL: API_URL
+	baseURL: API_URL + '/api'
 });
 
 type ResponseBody = {
