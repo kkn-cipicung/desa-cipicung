@@ -7,8 +7,16 @@
 	import ContourLines from '$lib/components/ContourLines.svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import type { PageProps } from './$types';
+	import { DashboardListRequest } from './_request/request';
 
 	let { data }: PageProps = $props();
+
+	const dashboardList = async () => {
+		const data = await DashboardListRequest();
+		console.log(data);
+	};
+
+	dashboardList();
 </script>
 
 <svelte:head>
