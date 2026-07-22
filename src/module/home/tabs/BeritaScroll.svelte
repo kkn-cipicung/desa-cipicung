@@ -6,7 +6,7 @@
 </script>
 
 <section class="w-full border-t border-ink/15 py-20 md:py-28">
-	<div class="mx-auto max-w-6xl px-6 md:px-16 lg:px-24">
+	<div class="mx-auto max-w-7xl px-6 md:px-16 lg:px-24">
 		<div
 			use:reveal
 			class="reveal-up flex flex-col items-start justify-between gap-4 md:flex-row md:items-end"
@@ -26,7 +26,7 @@
 
 	<!-- Horizontal scroll -->
 	{#if berita.length === 0}
-		<div class="mx-auto mt-12 max-w-6xl px-6 md:px-16 lg:px-24">
+		<div class="mx-auto mt-12 max-w-7xl px-6 md:px-16 lg:px-24">
 			<div class="rounded-sm border border-dashed border-ink/20 px-6 py-10 text-center">
 				<p class="text-sm text-ink-soft">Belum ada berita yang diterbitkan.</p>
 			</div>

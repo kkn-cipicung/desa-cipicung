@@ -9,7 +9,7 @@
 	id="potensi"
 	class="w-full scroll-mt-24 border-t border-ink/15 px-6 py-20 md:px-16 md:py-28 lg:px-24"
 >
-	<div class="mx-auto max-w-6xl">
+	<div class="mx-auto max-w-7xl">
 		<div use:reveal class="reveal-up flex flex-wrap items-end justify-between gap-6">
 			<div>
 				<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Potensi</p>

@@ -54,53 +54,97 @@
 	</span>
 </a>
 
-<!-- Hamburger: opens a small panel, never a fullscreen takeover -->
+<!-- Desktop: centered pill navbar, links laid out inline -->
+<nav
+	aria-label="Navigasi utama"
+	class="fixed top-5 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-ink/15 bg-paper/95 px-2 py-1.5 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm md:flex"
+>
+	{#each entries as entry (entry.href)}
+		<a
+			href={entry.href}
+			class="relative rounded-full px-4 py-1.5 font-sans text-sm transition-colors {isActive(
+				entry.href
+			)
+				? 'font-semibold text-clay'
+				: 'text-ink hover:text-clay'}"
+		>
+			{#if isActive(entry.href)}
+				<span class="absolute inset-0 rounded-full bg-clay/10" aria-hidden="true"></span>
+			{/if}
+			<span class="relative">{entry.name}</span>
+		</a>
+	{/each}
+</nav>
+
+<!-- Mobile: hamburger opens a full-width sheet, styled distinctly from desktop -->
 <button
 	id="nav-toggle"
 	type="button"
 	onclick={() => (isOpen = !isOpen)}
-	class="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/95 px-3.5 py-2 font-mono text-[11px] tracking-[0.15em] text-ink uppercase shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm transition-colors hover:border-clay hover:text-clay md:top-5 md:right-6"
+	class="fixed top-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-paper/95 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm transition-colors hover:border-clay hover:text-clay md:hidden"
 	aria-expanded={isOpen}
 	aria-controls="nav-panel"
+	aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
 >
-	<span class="relative flex h-3 w-4 flex-col justify-between">
+	<span class="relative flex h-3.5 w-5 flex-col justify-between">
 		<span
-			class="h-px w-full bg-current transition-transform duration-300 {isOpen
-				? 'translate-y-[5.5px] rotate-45'
+			class="h-[1.5px] w-full origin-center rounded-full bg-current transition-transform duration-300 {isOpen
+				? 'translate-y-[6.5px] rotate-45'
 				: ''}"
 		></span>
-		<span class="h-px w-full bg-current transition-opacity duration-200 {isOpen ? 'opacity-0' : ''}"
+		<span
+			class="h-[1.5px] w-full rounded-full bg-current transition-opacity duration-200 {isOpen
+				? 'opacity-0'
+				: ''}"
 		></span>
 		<span
-			class="h-px w-full bg-current transition-transform duration-300 {isOpen
-				? '-translate-y-[5.5px] -rotate-45'
+			class="h-[1.5px] w-full origin-center rounded-full bg-current transition-transform duration-300 {isOpen
+				? '-translate-y-[6.5px] -rotate-45'
 				: ''}"
 		></span>
 	</span>
-	{isOpen ? 'Tutup' : 'Menu'}
 </button>
 
 {#if isOpen}
+	<!-- Backdrop -->
+	<div
+		class="fixed inset-0 z-30 bg-ink/40 backdrop-blur-[2px] md:hidden"
+		transition:fly={{ duration: 180, easing: cubicOut, opacity: 0 }}
+		onclick={close}
+		aria-hidden="true"
+	></div>
+
+	<!-- Slide-down sheet, compact width, right-aligned under the toggle -->
 	<div
 		id="nav-panel"
-		transition:fly={{ y: -8, duration: 180, easing: cubicOut }}
-		class="fixed top-16 right-4 z-40 w-56 overflow-hidden rounded-2xl border border-ink/15 bg-paper shadow-[0_16px_40px_-12px_rgba(38,51,32,0.35)] md:top-[4.5rem] md:right-6"
+		transition:fly={{ y: -12, duration: 200, easing: cubicOut }}
+		class="fixed top-[4.25rem] right-3 z-40 w-48 overflow-hidden rounded-2xl border border-ink/15 bg-paper shadow-[0_16px_36px_-12px_rgba(38,51,32,0.4)] md:hidden"
 	>
-		<nav class="flex flex-col divide-y divide-ink/10 py-1.5">
+		<p
+			class="border-b border-ink/10 px-3.5 pt-2.5 pb-1.5 font-mono text-[9px] tracking-[0.15em] text-ink-soft/70 uppercase"
+		>
+			Menu
+		</p>
+		<nav class="flex flex-col divide-y divide-ink/10 py-0.5">
 			{#each entries as entry (entry.href)}
 				<a
 					href={entry.href}
 					onclick={close}
-					class="px-4 py-2.5 font-sans text-sm transition-colors {isActive(entry.href)
+					class="flex items-center justify-between px-3.5 py-2 font-sans text-sm transition-colors {isActive(
+						entry.href
+					)
 						? 'font-semibold text-clay'
-						: 'text-ink hover:text-clay'}"
+						: 'text-ink active:text-clay'}"
 				>
 					{entry.name}
+					{#if isActive(entry.href)}
+						<span class="h-1 w-1 rounded-full bg-clay"></span>
+					{/if}
 				</a>
 			{/each}
 		</nav>
 		<p
-			class="border-t border-ink/10 px-4 py-2.5 font-mono text-[10px] tracking-[0.1em] text-ink-soft/70 uppercase"
+			class="border-t border-ink/10 px-3.5 py-2 font-mono text-[8px] tracking-[0.1em] text-ink-soft/70 uppercase"
 		>
 			Kec. Sukatani &middot; Purwakarta
 		</p>
