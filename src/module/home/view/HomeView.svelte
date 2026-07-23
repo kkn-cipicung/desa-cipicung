@@ -32,10 +32,7 @@
 
 <svelte:head>
 	<title>Desa Cipicung - Portal Resmi</title>
-	<meta
-		name="description"
-		content="Portal resmi Desa Cipicung."
-	/>
+	<meta name="description" content="Portal resmi Desa Cipicung." />
 </svelte:head>
 
 <div class="flex w-full flex-col">

@@ -1,5 +1,8 @@
 import type { PageLoad } from './$types';
-import { DashboardActiveRequest, DashboardOverviewRequest } from '../../module/home/_request/request';
+import {
+	DashboardActiveRequest,
+	DashboardOverviewRequest
+} from '../../module/home/_request/request';
 import { NewsListRequest } from '../../module/news/_request/request';
 import { PotentialListRequest } from '../../module/potential/_request/request';
 

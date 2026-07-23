@@ -51,7 +51,8 @@
 					{#if contactInfo?.office}
 						<p class="mt-2 text-sm leading-relaxed text-ink md:text-base">
 							{contactInfo.office.name || ''}<br />
-							Kecamatan {contactInfo.office.district || ''}, Kabupaten {contactInfo.office.regency || ''}<br />
+							Kecamatan {contactInfo.office.district || ''}, Kabupaten {contactInfo.office
+								.regency || ''}<br />
 							{contactInfo.office.province || ''}, {contactInfo.office.postal_code || ''}
 						</p>
 					{:else}

@@ -17,9 +17,21 @@
 		overview
 			? [
 					{ label: 'Luas Wilayah', value: overview.area || '', num: null },
-					{ label: 'Penduduk', value: overview.population ? 'jiwa' : '', num: overview.population || null },
-					{ label: 'Kepala Keluarga', value: overview.total_family ? 'KK' : '', num: overview.total_family || null },
-					{ label: 'Dusun', value: overview.total_hamlet ? 'dusun' : '', num: overview.total_hamlet || null }
+					{
+						label: 'Penduduk',
+						value: overview.population ? 'jiwa' : '',
+						num: overview.population || null
+					},
+					{
+						label: 'Kepala Keluarga',
+						value: overview.total_family ? 'KK' : '',
+						num: overview.total_family || null
+					},
+					{
+						label: 'Dusun',
+						value: overview.total_hamlet ? 'dusun' : '',
+						num: overview.total_hamlet || null
+					}
 				]
 			: []
 	);

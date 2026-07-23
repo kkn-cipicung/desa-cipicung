@@ -3,10 +3,10 @@
 	import { reveal } from '$lib/actions/reveal';
 	import { env } from '$env/dynamic/public';
 
-	let { berita }: { berita: NewsResponse[] } = $props();
+	let { berita = [] }: { berita?: NewsResponse[] } = $props();
 
 	function getImageUrl(mediaPath?: string | null) {
-		if (!mediaPath) return '/placeholder-news.jpg';
+		if (!mediaPath) return '/hero-image.JPG';
 		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
 		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
 		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
@@ -14,7 +14,7 @@
 </script>
 
 <section class="w-full border-t border-ink/15 py-20 md:py-28">
-	<div class="mx-auto max-w-6xl px-6 md:px-16 lg:px-24">
+	<div class="mx-auto max-w-7xl px-6 md:px-16 lg:px-24">
 		<div
 			use:reveal
 			class="reveal-up flex flex-col items-start justify-between gap-4 md:flex-row md:items-end"
@@ -34,7 +34,7 @@
 
 	<!-- Horizontal scroll -->
 	{#if berita.length === 0}
-		<div class="mx-auto mt-12 max-w-6xl px-6 md:px-16 lg:px-24">
+		<div class="mx-auto mt-12 max-w-7xl px-6 md:px-16 lg:px-24">
 			<div class="rounded-sm border border-dashed border-ink/20 px-6 py-10 text-center">
 				<p class="text-sm text-ink-soft">Belum ada berita yang diterbitkan.</p>
 			</div>
@@ -62,7 +62,9 @@
 						<h3 class="font-serif text-xl leading-snug text-ink italic md:text-2xl">
 							{item.title}
 						</h3>
-						<p class="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-soft">{item.description}</p>
+						<p class="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-soft">
+							{item.description}
+						</p>
 					</div>
 					<span
 						class="font-mono text-[11px] tracking-[0.1em] text-ink-soft uppercase transition-colors group-hover:text-clay"

@@ -73,7 +73,7 @@
 			</div>
 			<div>
 				<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jumlah KK</dt>
-				<dd class="mt-1 text-sm text-ink">{''}</dd>
+				<dd class="mt-1 text-sm text-ink"></dd>
 			</div>
 		</dl>
 
@@ -103,7 +103,9 @@
 							</div>
 						{/each}
 					</div>
-					<p class="mt-3 text-xs text-ink-soft/70">Daftar Kepala Desa Cipicung dari masa ke masa.</p>
+					<p class="mt-3 text-xs text-ink-soft/70">
+						Daftar Kepala Desa Cipicung dari masa ke masa.
+					</p>
 				{/if}
 			</div>
 		</div>

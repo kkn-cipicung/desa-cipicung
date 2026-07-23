@@ -34,8 +34,9 @@ export interface ProfileResponse {
 	south_border: string;
 	west_border: string;
 	area: string;
-	population: string;
+	population?: number;
 	headman: Headman | null;
+	headmen?: GovernmentStaff[] | null;
 	created_at: string;
 	updated_at: string;
 }
@@ -49,7 +50,7 @@ export interface RegionBoundaryResponse {
 	south_border: string;
 	west_border: string;
 	area: string;
-	population: string;
+	population: number;
 }
 
 export interface VisionMissionResponse {
