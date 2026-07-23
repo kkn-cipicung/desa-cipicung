@@ -3,32 +3,13 @@
 	import BarChart from '$lib/components/charts/BarChart.svelte';
 	import CountUp from '$lib/components/CountUp.svelte';
 	import { reveal } from '$lib/actions/reveal';
-	import {
-		ringkasan,
-		dusun,
-		agamaPerRt,
-		agamaKategori,
-		pendidikan,
-		pekerjaan,
-		usia2024
-	} from '$lib/data/village';
-
-	const dusunSlices = dusun.map((d, i) => ({
-		label: `${d.nama} (${d.rt})`,
-		value: d.jumlah,
-		color: i === 0 ? 'var(--color-clay)' : 'var(--color-brass)'
-	}));
-
-	const agamaSlices = agamaKategori.filter((a) => a.value > 0);
-
-	const agamaBars = agamaPerRt.map((r) => ({
-		label: r.rt,
-		value: r.islam,
-		value2: r.kristen || undefined
-	}));
-	const pendidikanBars = pendidikan.map((p) => ({ label: p.label, value: p.l, value2: p.p }));
-	const pekerjaanBars = pekerjaan.map((p) => ({ label: p.label, value: p.l, value2: p.p }));
-	const usiaBars = usia2024.map((u) => ({ label: `${u.label} th`, value: u.jiwa }));
+	const ringkasan = { penduduk: 0, kk: 0, lakiLaki: 0, perempuan: 0 };
+	const dusunSlices: { label: string; value: number; color: string }[] = [];
+	const agamaSlices: { label: string; value: number; color: string }[] = [];
+	const agamaBars: { label: string; value: number; value2?: number }[] = [];
+	const pendidikanBars: { label: string; value: number; value2?: number }[] = [];
+	const pekerjaanBars: { label: string; value: number; value2?: number }[] = [];
+	const usiaBars: { label: string; value: number }[] = [];
 </script>
 
 <svelte:head>

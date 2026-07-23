@@ -3,7 +3,7 @@ import type { MapResponse } from '../_model/response';
 import axios from '../../../utils/axios';
 
 export const MapDetailRequest = async (): Promise<MapResponse> => {
-	const { data } = await axios.post<ApiResponse<MapResponse>>('/map/detail');
+	const { data } = await axios.post<ApiResponse<MapResponse>>('/map/active');
 	return data.data;
 };
 

@@ -1,30 +1,27 @@
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
 	import CountUp from '$lib/components/CountUp.svelte';
+	import type { DashboardOverviewResponse } from '../_model/response';
+	import { env } from '$env/dynamic/public';
 
-	interface StatsData {
-		luasWilayah: string;
-		penduduk: number;
-		kk: number;
-		lakiLaki: number;
-		perempuan: number;
-		dusun: number;
+	let { overview }: { overview: DashboardOverviewResponse | null } = $props();
+
+	function getImageUrl(mediaPath?: string | null) {
+		if (!mediaPath) return '';
+		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
+		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
+		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
 	}
 
-	let { stats }: { stats: StatsData | null } = $props();
-
 	const cards = $derived(
-		stats
+		overview
 			? [
-					{ label: 'Luas Wilayah', value: stats.luasWilayah, num: null },
-					{ label: 'Penduduk', value: 'jiwa', num: stats.penduduk },
-					{ label: 'Kepala Keluarga', value: 'KK', num: stats.kk },
-					{ label: 'Dusun', value: 'dusun', num: stats.dusun }
+					{ label: 'Luas Wilayah', value: overview.area || '', num: null },
+					{ label: 'Penduduk', value: overview.population ? 'jiwa' : '', num: overview.population || null },
+					{ label: 'Kepala Keluarga', value: overview.total_family ? 'KK' : '', num: overview.total_family || null },
+					{ label: 'Dusun', value: overview.total_hamlet ? 'dusun' : '', num: overview.total_hamlet || null }
 				]
-			: [
-					{ label: 'Luas Wilayah', value: '420 Ha', num: null },
-					{ label: 'Penduduk', value: 'jiwa', num: 3265 }
-				]
+			: []
 	);
 </script>
 
@@ -33,14 +30,14 @@
 		<div use:reveal class="reveal-up md:col-span-4">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Sekilas Desa</p>
 			<h2 class="mt-3 font-serif text-4xl leading-tight italic md:text-5xl">
-				Desa yang<br />tumbuh dari<br />usaha kecil.
+				{overview?.title || ''}
 			</h2>
 		</div>
 
 		<div use:reveal={{ delay: 120 }} class="reveal-scale md:col-span-3 md:col-start-6">
 			<div class="aspect-[4/5] w-full overflow-hidden rounded-sm">
 				<img
-					src="/overview.JPG"
+					src={getImageUrl(overview?.media)}
 					alt="Sekilas Desa Cipicung"
 					class="h-full w-full object-cover grayscale-[15%]"
 				/>
@@ -51,15 +48,13 @@
 			use:reveal={{ delay: 200 }}
 			class="reveal-up flex flex-col gap-6 md:col-span-4 md:col-start-9"
 		>
-			<p class="text-sm leading-relaxed text-ink-soft md:text-base">
-				Desa Cipicung terletak di Kecamatan Sukatani, Kabupaten Purwakarta, Jawa Barat. Memadukan
-				nilai gotong royong dengan semangat wirausaha, warga desa mengelola hasil bumi &mdash; gula
-				aren, arang, dan kerajinan &mdash; menjadi produk yang dijual hingga ke luar desa.
-			</p>
-			<p class="text-sm leading-relaxed text-ink-soft md:text-base">
-				Website ini adalah etalase kecil dari desa itu: profil wilayah, peta batas desa, dan potensi
-				unggulan yang terus diperbarui.
-			</p>
+			{#if overview?.description}
+				<p class="text-sm leading-relaxed text-ink-soft md:text-base">
+					{overview.description}
+				</p>
+			{:else}
+				<p class="text-sm leading-relaxed text-ink-soft md:text-base"></p>
+			{/if}
 		</div>
 
 		<!-- Statistik dalam kartu -->

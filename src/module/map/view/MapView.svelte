@@ -1,37 +1,36 @@
 <script lang="ts">
 	import CipicungMap from '../components/CipicungMap.svelte';
-	import { dusun as defaultDusun } from '$lib/data/village';
 	import { reveal } from '$lib/actions/reveal';
 	import type { MapResponse } from '../_model/response';
 
 	let { data }: { data?: { mapData?: MapResponse | null } } = $props();
 	const mapInfo = $derived(data?.mapData);
 
-	const elevation = $derived(mapInfo?.elevation || '218–394 mdpl');
-	const coordinate = $derived(mapInfo?.coordinate || '6°36\'37" LS, 107°22\'39" BT');
+	const elevation = $derived(mapInfo?.elevation || '');
+	const coordinate = $derived(mapInfo?.coordinate || '');
 
 	const dusunList = $derived.by(() => {
 		if (mapInfo) {
 			return [
 				{
-					nama: defaultDusun[0]?.nama || 'Dusun 01',
-					rt: defaultDusun[0]?.rt || 'RT 01–06',
-					jumlah: mapInfo.hamlet_one ?? defaultDusun[0]?.jumlah ?? 0
+					nama: 'Dusun 01',
+					rt: '',
+					jumlah: mapInfo.hamlet_one ?? 0
 				},
 				{
-					nama: defaultDusun[1]?.nama || 'Dusun 02',
-					rt: defaultDusun[1]?.rt || 'RT 07–10',
-					jumlah: mapInfo.hamlet_two ?? defaultDusun[1]?.jumlah ?? 0
+					nama: 'Dusun 02',
+					rt: '',
+					jumlah: mapInfo.hamlet_two ?? 0
 				}
 			];
 		}
-		return defaultDusun;
+		return [];
 	});
 
 	const googleMapsUrl = $derived(
 		mapInfo?.coordinate
 			? `https://www.google.com/maps?q=${encodeURIComponent(mapInfo.coordinate)}`
-			: 'https://www.google.com/maps?q=-6.6102544,107.3774396'
+			: ''
 	);
 </script>
 

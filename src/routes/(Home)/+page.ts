@@ -1,17 +1,32 @@
 import type { PageLoad } from './$types';
-import type { BeritaItem } from '$lib/data/berita';
-import type { PotensiItem } from '$lib/data/potensi';
+import { DashboardActiveRequest, DashboardOverviewRequest } from '../../module/home/_request/request';
+import { NewsListRequest } from '../../module/news/_request/request';
+import { PotentialListRequest } from '../../module/potential/_request/request';
 
-export const load: PageLoad = async ({ fetch }) => {
-	const [newsRes, dashboardRes, potentialRes] = await Promise.all([
-		fetch('/api/news/list'),
-		fetch('/api/dashboard'),
-		fetch('/api/potential/list')
+export const load: PageLoad = async () => {
+	const [activeDashboard, overview, newsList, potentialList] = await Promise.all([
+		DashboardActiveRequest().catch((err) => {
+			console.error('Error fetching active dashboard:', err.message || err);
+			return null;
+		}),
+		DashboardOverviewRequest().catch((err) => {
+			console.error('Error fetching dashboard overview:', err.message || err);
+			return null;
+		}),
+		NewsListRequest({ limit: 6, index: 0 }).catch((err) => {
+			console.error('Error fetching news list:', err.message || err);
+			return [];
+		}),
+		PotentialListRequest({ limit: 6, index: 0 }).catch((err) => {
+			console.error('Error fetching potential list:', err.message || err);
+			return [];
+		})
 	]);
 
-	const berita: Omit<BeritaItem, 'isi'>[] = newsRes.ok ? (await newsRes.json()).data : [];
-	const stats = dashboardRes.ok ? (await dashboardRes.json()).data : null;
-	const items: PotensiItem[] = potentialRes.ok ? (await potentialRes.json()).data : [];
-
-	return { berita: berita.slice(0, 6), stats, items };
+	return {
+		activeDashboard,
+		overview,
+		newsList: newsList || [],
+		potentialList: potentialList || []
+	};
 };

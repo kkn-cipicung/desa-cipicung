@@ -1,8 +1,16 @@
 <script lang="ts">
-	import type { PotensiItem } from '$lib/data/potensi';
+	import type { PotentialResponse } from '../../potential/_model/response';
 	import { reveal } from '$lib/actions/reveal';
+	import { env } from '$env/dynamic/public';
 
-	let { items }: { items: PotensiItem[] } = $props();
+	let { items }: { items: PotentialResponse[] } = $props();
+
+	function getImageUrl(mediaPath?: string | null) {
+		if (!mediaPath) return '/placeholder-potential.jpg';
+		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
+		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
+		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
+	}
 </script>
 
 <section
@@ -29,30 +37,30 @@
 			<p class="mt-14 text-sm text-ink-soft">Belum ada data potensi desa yang tersedia saat ini.</p>
 		{:else}
 			<div class="mt-14 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-				{#each items as item, i (item.slug)}
+				{#each items as item, i (item.id)}
 					<a
-						href="/potensi/{item.slug}"
+						href="/potensi/{item.id}"
 						use:reveal={{ delay: i * 110 }}
 						class="reveal-up group flex flex-col"
 					>
 						<div class="aspect-[4/3] w-full overflow-hidden rounded-sm bg-ink/5">
 							<img
-								src={item.gambar}
-								alt={item.name}
+								src={getImageUrl(item.media)}
+								alt={item.title}
 								loading="lazy"
 								class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 							/>
 						</div>
 						<span class="mt-4 font-mono text-[10px] tracking-[0.15em] text-clay uppercase">
-							{item.category}
+							{item.category?.name || ''}
 						</span>
 						<h3
 							class="mt-1 font-serif text-2xl text-ink italic transition-colors group-hover:text-clay"
 						>
-							{item.name}
+							{item.title}
 						</h3>
 						<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-soft md:text-base">
-							{item.desc}
+							{item.subtitle || item.description || ''}
 						</p>
 					</a>
 				{/each}

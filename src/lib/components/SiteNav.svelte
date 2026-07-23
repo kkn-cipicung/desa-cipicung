@@ -39,7 +39,7 @@
 <!-- Logo: opaque pill so it never blends into a photo behind it -->
 <a
 	href="/"
-	class="group fixed top-4 left-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/95 py-1.5 pr-4 pl-1.5 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm md:top-5 md:left-6"
+	class="group fixed top-4 right-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/95 py-1.5 pr-4 pl-1.5 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm md:top-5 md:right-6"
 	aria-label="Desa Cipicung - Beranda"
 >
 	<img
@@ -59,7 +59,7 @@
 	id="nav-toggle"
 	type="button"
 	onclick={() => (isOpen = !isOpen)}
-	class="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/95 px-3.5 py-2 font-mono text-[11px] tracking-[0.15em] text-ink uppercase shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm transition-colors hover:border-clay hover:text-clay md:top-5 md:right-6"
+	class="fixed top-4 left-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/95 px-3.5 py-2 font-mono text-[11px] tracking-[0.15em] text-ink uppercase shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm transition-colors hover:border-clay hover:text-clay md:top-5 md:left-6"
 	aria-expanded={isOpen}
 	aria-controls="nav-panel"
 >
@@ -84,7 +84,7 @@
 	<div
 		id="nav-panel"
 		transition:fly={{ y: -8, duration: 180, easing: cubicOut }}
-		class="fixed top-16 right-4 z-40 w-56 overflow-hidden rounded-2xl border border-ink/15 bg-paper shadow-[0_16px_40px_-12px_rgba(38,51,32,0.35)] md:top-[4.5rem] md:right-6"
+		class="fixed top-16 left-4 z-40 w-56 overflow-hidden rounded-2xl border border-ink/15 bg-paper shadow-[0_16px_40px_-12px_rgba(38,51,32,0.35)] md:top-[4.5rem] md:left-6"
 	>
 		<nav class="flex flex-col divide-y divide-ink/10 py-1.5">
 			{#each entries as entry (entry.href)}

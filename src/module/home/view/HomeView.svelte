@@ -6,37 +6,35 @@
 	import StempelDesa from '$lib/components/StempelDesa.svelte';
 	import ContourLines from '$lib/components/ContourLines.svelte';
 	import { reveal } from '$lib/actions/reveal';
-	import type { BeritaItem } from '$lib/data/berita';
-	import type { PotensiItem } from '$lib/data/potensi';
-	import { onMount } from 'svelte';
-	import { DashboardDetailRequest } from '../_request/request';
-
-	interface StatsData {
-		luasWilayah: string;
-		penduduk: number;
-		kk: number;
-		lakiLaki: number;
-		perempuan: number;
-		dusun: number;
-	}
+	import type { DashboardResponse, DashboardOverviewResponse } from '../_model/response';
+	import type { NewsResponse } from '../../news/_model/response';
+	import type { PotentialResponse } from '../../potential/_model/response';
+	import { env } from '$env/dynamic/public';
 
 	let {
 		data
 	}: {
-		data: { berita: Omit<BeritaItem, 'isi'>[]; stats: StatsData | null; items: PotensiItem[] };
+		data: {
+			activeDashboard: DashboardResponse | null;
+			overview: DashboardOverviewResponse | null;
+			newsList: NewsResponse[];
+			potentialList: PotentialResponse[];
+		};
 	} = $props();
 
-	onMount(async () => {
-		const dashboards = await DashboardDetailRequest();
-		console.log(dashboards);
-	});
+	function getImageUrl(mediaPath?: string | null) {
+		if (!mediaPath) return '';
+		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
+		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
+		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
+	}
 </script>
 
 <svelte:head>
 	<title>Desa Cipicung - Portal Resmi</title>
 	<meta
 		name="description"
-		content="Portal resmi Desa Cipicung, Kecamatan Sukatani, Kabupaten Purwakarta, Jawa Barat."
+		content="Portal resmi Desa Cipicung."
 	/>
 </svelte:head>
 
@@ -44,8 +42,8 @@
 	<!-- Hero -->
 	<section class="relative flex min-h-screen w-full shrink-0 flex-col overflow-hidden bg-ink">
 		<img
-			src="/hero-image.JPG"
-			alt="Desa Cipicung"
+			src={getImageUrl(data.activeDashboard?.media)}
+			alt={data.activeDashboard?.title || ''}
 			class="absolute inset-0 h-full w-full object-cover opacity-55 grayscale-[10%]"
 		/>
 		<div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/25"></div>
@@ -83,15 +81,13 @@
 				use:reveal={{ delay: 120 }}
 				class="reveal-up mt-4 max-w-3xl font-serif text-6xl leading-[0.95] font-light text-paper italic sm:text-7xl md:text-8xl lg:text-9xl"
 			>
-				Cipicung.
+				{data.activeDashboard?.title || ''}
 			</h1>
 			<p
 				use:reveal={{ delay: 260 }}
 				class="reveal-up mt-6 max-w-md text-sm leading-relaxed text-paper/70 md:text-base"
 			>
-				Terletak di kaki Gunung Kacapi, Desa Cipicung tumbuh bersama potensi alamnya. Aktivitas
-				pertambangan batu belah, pertanian, dan usaha masyarakat menjadi denyut kehidupan yang
-				menggerakkan desa setiap hari.
+				{data.activeDashboard?.description || ''}
 			</p>
 			<div use:reveal={{ delay: 380 }} class="reveal-up mt-10 flex items-center gap-6">
 				<a
@@ -110,8 +106,8 @@
 		</div>
 	</section>
 
-	<BeritaScroll berita={data.berita} />
-	<Overview stats={data.stats} />
+	<BeritaScroll berita={data.newsList} />
+	<Overview overview={data.overview} />
 	<Explore />
-	<Potensi items={data.items} />
+	<Potensi items={data.potentialList} />
 </div>

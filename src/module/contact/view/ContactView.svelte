@@ -15,12 +15,6 @@
 		sent = true;
 	}
 
-	const defaultSocials = [
-		{ label: 'Instagram', handle: '@cipicungpemdes', href: 'https://instagram.com/cipicungpemdes' },
-		{ label: 'TikTok', handle: '@pemdes.cipicung', href: 'https://tiktok.com/@pemdes.cipicung' },
-		{ label: 'YouTube', handle: '@desacipicung-x8k', href: 'https://youtube.com/@desacipicung-x8k' }
-	];
-
 	const socials = $derived.by(() => {
 		if (contactInfo?.social_media && contactInfo.social_media.length) {
 			return contactInfo.social_media.map((s) => ({
@@ -29,16 +23,10 @@
 				href: s.url
 			}));
 		}
-		return defaultSocials;
+		return [];
 	});
 
-	const defaultHours = [
-		{ day: 'Senin-Kamis', time: '08.00-15.00' },
-		{ day: 'Jumat', time: '08.00-11.30' },
-		{ day: 'Sabtu-Minggu', time: 'Tutup' }
-	];
-
-	const hours = $derived(contactInfo?.service_hour || defaultHours);
+	const hours = $derived(contactInfo?.service_hour || []);
 </script>
 
 <svelte:head>
@@ -62,32 +50,28 @@
 					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Kantor</p>
 					{#if contactInfo?.office}
 						<p class="mt-2 text-sm leading-relaxed text-ink md:text-base">
-							{contactInfo.office.name}<br />
-							Kecamatan {contactInfo.office.district}, Kabupaten {contactInfo.office.regency}<br />
-							{contactInfo.office.province}, {contactInfo.office.postal_code}
+							{contactInfo.office.name || ''}<br />
+							Kecamatan {contactInfo.office.district || ''}, Kabupaten {contactInfo.office.regency || ''}<br />
+							{contactInfo.office.province || ''}, {contactInfo.office.postal_code || ''}
 						</p>
 					{:else}
-						<p class="mt-2 text-sm leading-relaxed text-ink md:text-base">
-							Kantor Kepala Desa Cipicung<br />
-							Kecamatan Sukatani, Kabupaten Purwakarta<br />
-							Jawa Barat, 41167
-						</p>
+						<p class="mt-2 text-sm leading-relaxed text-ink md:text-base"></p>
 					{/if}
 				</div>
 
 				<div>
 					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Kontak</p>
 					<a
-						href="mailto:{contactInfo?.contact?.email || 'pemdes@cipicung.desa.id'}"
+						href="mailto:{contactInfo?.contact?.email || ''}"
 						class="mt-2 block text-sm text-ink underline decoration-ink/20 underline-offset-4 hover:text-clay hover:decoration-clay md:text-base"
 					>
-						{contactInfo?.contact?.email || 'pemdes@cipicung.desa.id'}
+						{contactInfo?.contact?.email || ''}
 					</a>
 					<a
-						href="tel:{contactInfo?.contact?.phone || '+6281234500000'}"
+						href="tel:{contactInfo?.contact?.phone || ''}"
 						class="mt-1 block text-sm text-ink underline decoration-ink/20 underline-offset-4 hover:text-clay hover:decoration-clay md:text-base"
 					>
-						{contactInfo?.contact?.phone || '+62 812-3450-0000'}
+						{contactInfo?.contact?.phone || ''}
 					</a>
 				</div>
 
@@ -183,7 +167,7 @@
 					title="Peta Lokasi Kantor Desa Cipicung"
 					src="https://www.google.com/maps?q={contactInfo?.office
 						? encodeURIComponent(contactInfo.office.name + ' ' + contactInfo.office.address)
-						: '-6.6102544,107.3774396'}&z=14&output=embed"
+						: ''}&z=14&output=embed"
 					class="h-80 w-full md:h-96"
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"

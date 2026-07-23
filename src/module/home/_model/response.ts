@@ -15,3 +15,15 @@ export interface DashboardResponse {
 	is_active: boolean;
 	created_at: string;
 }
+
+export interface DashboardOverviewResponse {
+	title?: string;
+	description?: string;
+	media?: string | null;
+	area: string;
+	population: number;
+	total_family: number;
+	total_hamlet: number;
+	total_news: number;
+	total_potential: number;
+}
