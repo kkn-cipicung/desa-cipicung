@@ -13,7 +13,7 @@ export function getMediaUrlCandidates(media: number | string | null | undefined)
 		return [value];
 	}
 
-	const baseUrl = (API_URL || '').replace(/\/$/, '');
+	const baseUrl = (API_URL || '').replace(/\/$/, '').replace(/\/api\/?$/, '');
 	const normalizedPath = value.replace(/^\//, '');
 
 	if (/^\d+$/.test(value)) {

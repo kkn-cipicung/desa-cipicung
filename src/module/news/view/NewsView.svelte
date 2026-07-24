@@ -62,9 +62,16 @@
 								</div>
 							{/if}
 							<div class="flex-1">
-								<span class="font-mono text-[11px] tracking-[0.15em] text-clay uppercase">
-									{formatDate(item.created_at)}
-								</span>
+								<div class="flex items-center gap-2">
+									{#if item.category_name || item.category?.name}
+										<span class="rounded-full bg-clay/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-clay uppercase">
+											{item.category_name || item.category?.name}
+										</span>
+									{/if}
+									<span class="font-mono text-[11px] tracking-[0.15em] text-clay uppercase">
+										{formatDate(item.created_at)}
+									</span>
+								</div>
 								<h2
 									class="mt-2 font-serif text-xl leading-snug text-ink italic transition-colors group-hover:text-clay md:text-2xl"
 								>

@@ -1,16 +1,9 @@
 <script lang="ts">
 	import type { NewsResponse } from '../../news/_model/response';
 	import { reveal } from '$lib/actions/reveal';
-	import { env } from '$env/dynamic/public';
+	import { getMediaUrl } from '../../../utils/media';
 
 	let { berita = [] }: { berita?: NewsResponse[] } = $props();
-
-	function getImageUrl(mediaPath?: string | null) {
-		if (!mediaPath) return '/hero-image.JPG';
-		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
-		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
-		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
-	}
 </script>
 
 <section class="w-full border-t border-ink/15 py-20 md:py-28">
@@ -49,7 +42,7 @@
 				>
 					<div class="aspect-[16/10] w-full overflow-hidden rounded-sm bg-ink/5">
 						<img
-							src={getImageUrl(item.media)}
+							src={getMediaUrl(item.media) || '/hero-image.JPG'}
 							alt={item.title}
 							loading="lazy"
 							class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

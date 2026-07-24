@@ -11,10 +11,6 @@ export interface PotentialResponse {
 	location: {
 		id: number;
 	} | null;
-	owner: {
-		name: string;
-		msisdn: string;
-	};
 	media?: string | null;
 	media_id?: number | string | null;
 	created_at: string;

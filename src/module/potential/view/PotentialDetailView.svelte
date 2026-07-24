@@ -50,20 +50,7 @@
 						{item.description}
 					</p>
 
-					{#if item.owner}
-						<div class="mt-8 border-t border-ink/15 pt-6">
-							<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">
-								Kontak Pemilik / Pengelola
-							</p>
-							<p class="mt-2 text-sm text-ink font-semibold">{item.owner.name}</p>
-							<a
-								href="tel:{item.owner.msisdn}"
-								class="mt-1 text-xs text-clay underline decoration-clay/35 hover:text-ink hover:decoration-ink"
-							>
-								{item.owner.msisdn}
-							</a>
-						</div>
-					{/if}
+
 
 					<p
 						class="mt-8 border-t border-ink/15 pt-6 font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase"

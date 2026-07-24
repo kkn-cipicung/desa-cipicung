@@ -46,3 +46,8 @@ export const ResourcePotentialRequest = async (): Promise<ResourcePotentialRespo
 	);
 	return data.data;
 };
+
+export const OfficialListRequest = async (): Promise<GovernmentStaff[]> => {
+	const { data } = await axios.post<ApiResponse<GovernmentStaff[]>>('/profile/official/list');
+	return data.data;
+};

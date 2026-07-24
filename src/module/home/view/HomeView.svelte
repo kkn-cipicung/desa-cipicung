@@ -9,7 +9,7 @@
 	import type { DashboardResponse, DashboardOverviewResponse } from '../_model/response';
 	import type { NewsResponse } from '../../news/_model/response';
 	import type { PotentialResponse } from '../../potential/_model/response';
-	import { env } from '$env/dynamic/public';
+	import { getMediaUrl } from '../../../utils/media';
 
 	let {
 		data
@@ -21,13 +21,6 @@
 			potentialList: PotentialResponse[];
 		};
 	} = $props();
-
-	function getImageUrl(mediaPath?: string | null) {
-		if (!mediaPath) return '';
-		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
-		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
-		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
-	}
 </script>
 
 <svelte:head>
@@ -39,7 +32,7 @@
 	<!-- Hero -->
 	<section class="relative flex min-h-screen w-full shrink-0 flex-col overflow-hidden bg-ink">
 		<img
-			src={getImageUrl(data.activeDashboard?.media)}
+			src={getMediaUrl(data.activeDashboard?.media)}
 			alt={data.activeDashboard?.title || ''}
 			class="absolute inset-0 h-full w-full object-cover opacity-55 grayscale-[10%]"
 		/>

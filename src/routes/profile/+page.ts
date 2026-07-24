@@ -4,11 +4,12 @@ import {
 	RegionBoundaryRequest,
 	VisionMissionRequest,
 	GovernmentStructureRequest,
-	ResourcePotentialRequest
+	ResourcePotentialRequest,
+	OfficialListRequest
 } from '../../module/profile/_request/request';
 
 export const load: PageLoad = async () => {
-	const [profile, boundary, visionMission, structure, resources] = await Promise.all([
+	const [profile, boundary, visionMission, structureData, officialsData, resources] = await Promise.all([
 		ProfileDetailRequest({ id: 1 }).catch((err) => {
 			console.error('Error fetching profile detail:', err.message || err);
 			return null;
@@ -25,17 +26,23 @@ export const load: PageLoad = async () => {
 			console.error('Error fetching government structure:', err.message || err);
 			return [];
 		}),
+		OfficialListRequest().catch((err) => {
+			console.error('Error fetching official list:', err.message || err);
+			return [];
+		}),
 		ResourcePotentialRequest().catch((err) => {
 			console.error('Error fetching resource potential:', err.message || err);
 			return null;
 		})
 	]);
 
+	const structure = (officialsData && officialsData.length > 0) ? officialsData : (structureData || []);
+
 	return {
 		profile,
 		boundary,
 		visionMission,
-		structure: structure || [],
+		structure,
 		resources
 	};
 };

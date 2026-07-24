@@ -34,9 +34,16 @@
 			</a>
 
 			<div use:reveal class="reveal-up">
-				<p class="mt-6 font-mono text-[11px] tracking-[0.2em] text-clay uppercase">
-					{formatDate(item.created_at)}
-				</p>
+				<div class="mt-6 flex items-center gap-2">
+					{#if item.category_name || item.category?.name}
+						<span class="rounded-full bg-clay/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-clay uppercase">
+							{item.category_name || item.category?.name}
+						</span>
+					{/if}
+					<span class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">
+						{formatDate(item.created_at)}
+					</span>
+				</div>
 				<h1 class="mt-3 font-serif text-3xl leading-tight text-ink italic md:text-5xl">
 					{item.title}
 				</h1>

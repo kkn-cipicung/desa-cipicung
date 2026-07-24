@@ -2,16 +2,9 @@
 	import { reveal } from '$lib/actions/reveal';
 	import CountUp from '$lib/components/CountUp.svelte';
 	import type { DashboardOverviewResponse } from '../_model/response';
-	import { env } from '$env/dynamic/public';
+	import { getMediaUrl } from '../../../utils/media';
 
 	let { overview }: { overview: DashboardOverviewResponse | null } = $props();
-
-	function getImageUrl(mediaPath?: string | null) {
-		if (!mediaPath) return '';
-		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
-		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
-		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
-	}
 
 	const cards = $derived(
 		overview
@@ -49,7 +42,7 @@
 		<div use:reveal={{ delay: 120 }} class="reveal-scale md:col-span-3 md:col-start-6">
 			<div class="aspect-[4/5] w-full overflow-hidden rounded-sm">
 				<img
-					src={getImageUrl(overview?.media)}
+					src={getMediaUrl(overview?.media)}
 					alt="Sekilas Desa Cipicung"
 					class="h-full w-full object-cover grayscale-[15%]"
 				/>

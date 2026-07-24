@@ -1,16 +1,9 @@
 <script lang="ts">
 	import type { PotentialResponse } from '../../potential/_model/response';
 	import { reveal } from '$lib/actions/reveal';
-	import { env } from '$env/dynamic/public';
+	import { getMediaUrl } from '../../../utils/media';
 
 	let { items = [] }: { items?: PotentialResponse[] } = $props();
-
-	function getImageUrl(mediaPath?: string | null) {
-		if (!mediaPath) return '/overview.JPG';
-		if (mediaPath.startsWith('http://') || mediaPath.startsWith('https://')) return mediaPath;
-		const baseUrl = env.PUBLIC_API_URL || 'http://localhost:8080';
-		return `${baseUrl.replace(/\/api\/?$/, '')}/${mediaPath.replace(/^\//, '')}`;
-	}
 </script>
 
 <section
@@ -45,7 +38,7 @@
 					>
 						<div class="aspect-[4/3] w-full overflow-hidden rounded-sm bg-ink/5">
 							<img
-								src={getImageUrl(item.media)}
+								src={getMediaUrl(item.media) || '/overview.JPG'}
 								alt={item.title}
 								loading="lazy"
 								class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
