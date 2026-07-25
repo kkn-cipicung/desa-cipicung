@@ -57,7 +57,7 @@
 		<!-- Data ringkas -->
 		<dl
 			use:reveal={{ delay: 120 }}
-			class="reveal-up mt-14 grid grid-cols-2 gap-x-8 gap-y-8 border-y border-ink/15 py-8 font-mono sm:grid-cols-4"
+			class="reveal-up mt-14 grid grid-cols-2 gap-x-8 gap-y-8 border-y border-ink/15 py-8 font-mono sm:grid-cols-5"
 		>
 			<div>
 				<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Kode Desa</dt>
@@ -68,12 +68,18 @@
 				<dd class="mt-1 text-sm text-ink">{boundary?.area || ''}</dd>
 			</div>
 			<div>
-				<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jumlah Penduduk</dt>
-				<dd class="mt-1 text-sm text-ink">{boundary?.population || ''}</dd>
+				<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jumlah RT</dt>
+				<dd class="mt-1 text-sm text-ink">{profile?.total_rt || boundary?.total_rt || 0}</dd>
+			</div>
+			<div>
+				<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jumlah RW</dt>
+				<dd class="mt-1 text-sm text-ink">{profile?.total_rw || boundary?.total_rw || 0}</dd>
 			</div>
 			<div>
 				<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jumlah KK</dt>
-				<dd class="mt-1 text-sm text-ink"></dd>
+				<dd class="mt-1 text-sm text-ink">
+					{profile?.total_family || boundary?.total_family || 0}
+				</dd>
 			</div>
 		</dl>
 
@@ -123,10 +129,15 @@
 					</p>
 					<ul class="mt-4 space-y-2 text-sm leading-relaxed text-ink-soft md:text-base">
 						<li>
-							<span class="text-ink">Dusun I</span> &mdash; {boundary?.hamlet_one || ''}
+							<span class="text-ink">RT / RW Dusun I</span> &mdash; {boundary?.rt_hamlet_one || 0} /
+							{boundary?.rw_hamlet_one || 0}
 						</li>
 						<li>
-							<span class="text-ink">Dusun II</span> &mdash; {boundary?.hamlet_two || ''}
+							<span class="text-ink">RT / RW Dusun II</span> &mdash; {boundary?.rt_hamlet_two || 0} /
+							{boundary?.rw_hamlet_two || 0}
+						</li>
+						<li>
+							<span class="text-ink">Jumlah KK</span> &mdash; {boundary?.total_family || 0}
 						</li>
 					</ul>
 
@@ -161,8 +172,10 @@
 							<dd class="mt-1 text-sm text-ink">{boundary?.area || ''}</dd>
 						</div>
 						<div>
-							<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jumlah Penduduk</dt>
-							<dd class="mt-1 text-sm text-ink">{boundary?.population || ''}</dd>
+							<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Total RT / RW</dt>
+							<dd class="mt-1 text-sm text-ink">
+								{boundary?.total_rt || 0} / {boundary?.total_rw || 0}
+							</dd>
 						</div>
 					</dl>
 				</div>

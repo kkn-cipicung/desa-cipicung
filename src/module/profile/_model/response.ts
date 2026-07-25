@@ -29,6 +29,13 @@ export interface ProfileResponse {
 	region: string;
 	hamlet_one: string;
 	hamlet_two: string;
+	total_family: number;
+	total_rt: number;
+	total_rw: number;
+	rt_hamlet_one: number;
+	rt_hamlet_two: number;
+	rw_hamlet_one: number;
+	rw_hamlet_two: number;
 	north_border: string;
 	east_border: string;
 	south_border: string;
@@ -45,6 +52,13 @@ export interface RegionBoundaryResponse {
 	region: string;
 	hamlet_one: string;
 	hamlet_two: string;
+	total_family: number;
+	total_rt: number;
+	total_rw: number;
+	rt_hamlet_one: number;
+	rt_hamlet_two: number;
+	rw_hamlet_one: number;
+	rw_hamlet_two: number;
 	north_border: string;
 	east_border: string;
 	south_border: string;
