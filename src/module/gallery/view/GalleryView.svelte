@@ -108,6 +108,7 @@
 		transition:fade={{ duration: 220 }}
 		class="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-4 backdrop-blur-sm md:p-10"
 		onclick={close}
+		onkeydown={onKeydown}
 		role="dialog"
 		aria-modal="true"
 		tabindex="-1"
@@ -116,6 +117,8 @@
 			transition:scale={{ duration: 260, start: 0.92 }}
 			class="flex max-h-full w-full max-w-md flex-col overflow-hidden rounded-xl border border-ink/10 bg-paper shadow-2xl"
 			onclick={(e) => e.stopPropagation()}
+			onkeydown={(e) => e.stopPropagation()}
+			role="presentation"
 		>
 			<div class="flex items-center justify-between border-b border-ink/10 px-5 py-4">
 				<h2 class="font-sans text-base font-semibold text-ink">

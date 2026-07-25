@@ -5,7 +5,8 @@ import type {
 	RegionBoundaryResponse,
 	VisionMissionResponse,
 	GovernmentStructureResponse,
-	ResourcePotentialResponse
+	ResourcePotentialResponse,
+	GovernmentStaff
 } from '../_model/response';
 import axios from '../../../utils/axios';
 
