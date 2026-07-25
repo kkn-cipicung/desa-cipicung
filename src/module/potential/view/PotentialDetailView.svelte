@@ -50,8 +50,6 @@
 						{item.description}
 					</p>
 
-
-
 					<p
 						class="mt-8 border-t border-ink/15 pt-6 font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase"
 					>

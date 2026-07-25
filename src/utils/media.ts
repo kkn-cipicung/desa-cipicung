@@ -7,32 +7,26 @@ export function getMediaUrl(media: number | string | null | undefined) {
 export function getMediaUrlCandidates(media: number | string | null | undefined) {
 	if (media === null || media === undefined || media === '') return [];
 
-	let value = String(media).trim().replace(/^#/, '');
-	if (!value) return [];
+	const raw = String(media).trim().replace(/^#/, '');
+	if (!raw) return [];
+
+	if (raw.startsWith('data:')) {
+		return [raw];
+	}
 
 	const baseUrl = (API_URL || '').replace(/\/$/, '').replace(/\/api\/?$/, '');
 
-	if (value.startsWith('http://localhost') || value.startsWith('http://127.0.0.1')) {
-		if (baseUrl) {
-			value = value.replace(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/, baseUrl);
-		}
-	}
+	const cleanPath = raw.replace(/^https?:\/\/[^/]+\//, '').replace(/^\//, '');
 
-	if (value.startsWith('http://') || value.startsWith('https://') || value.startsWith('data:')) {
-		return [value];
-	}
-
-	const normalizedPath = value.replace(/^\//, '');
-
-	if (/^\d+$/.test(value)) {
+	if (/^\d+$/.test(cleanPath)) {
 		return [
-			`${baseUrl}/api/media/${value}`,
-			`${baseUrl}/api/media?id=${value}`,
-			`${baseUrl}/media/${value}`,
-			`${baseUrl}/media?id=${value}`,
-			`${baseUrl}/uploads/${value}`
+			`${baseUrl}/api/media/${cleanPath}`,
+			`${baseUrl}/api/media?id=${cleanPath}`,
+			`${baseUrl}/media/${cleanPath}`,
+			`${baseUrl}/media?id=${cleanPath}`,
+			`${baseUrl}/uploads/${cleanPath}`
 		];
 	}
 
-	return [`${baseUrl}/${normalizedPath}`];
+	return [`${baseUrl}/${cleanPath}`];
 }

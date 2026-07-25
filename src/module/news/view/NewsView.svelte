@@ -64,7 +64,9 @@
 							<div class="flex-1">
 								<div class="flex items-center gap-2">
 									{#if item.category_name || item.category?.name}
-										<span class="rounded-full bg-clay/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-clay uppercase">
+										<span
+											class="rounded-full bg-clay/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-clay uppercase"
+										>
 											{item.category_name || item.category?.name}
 										</span>
 									{/if}

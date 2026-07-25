@@ -12,12 +12,12 @@ import axios from '../../../utils/axios';
 export const ProfileDetailRequest = async (
 	payload: ProfileDetailPayload
 ): Promise<ProfileResponse> => {
-	const { data } = await axios.post<ApiResponse<ProfileResponse>>('/profile/active', payload);
+	const { data } = await axios.post<ApiResponse<ProfileResponse>>('/profile/detail', payload);
 	return data.data;
 };
 
 export const ProfileActiveRequest = async (): Promise<ProfileResponse> => {
-	const { data } = await axios.post<ApiResponse<ProfileResponse>>('/profile/active');
+	const { data } = await axios.post<ApiResponse<ProfileResponse>>('/profile/detail');
 	return data.data;
 };
 
