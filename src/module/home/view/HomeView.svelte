@@ -30,7 +30,7 @@
 
 <div class="flex w-full flex-col">
 	<!-- Hero -->
-	<section class="relative flex min-h-screen w-full shrink-0 flex-col overflow-hidden bg-ink">
+	<section class="relative flex min-h-[100svh] w-full shrink-0 flex-col overflow-hidden bg-ink sm:min-h-screen">
 		<img
 			src={getMediaUrl(data.activeDashboard?.media)}
 			alt={data.activeDashboard?.title || ''}
@@ -43,7 +43,7 @@
 		<!-- Cap resmi: signature element -->
 		<div
 			use:reveal={{ delay: 500 }}
-			class="reveal-scale absolute top-20 right-6 -rotate-6 text-paper/70 md:top-24 md:right-14"
+			class="reveal-scale absolute top-20 right-6 hidden -rotate-6 text-paper/70 sm:block md:top-24 md:right-14"
 		>
 			<StempelDesa size={104} />
 		</div>
@@ -51,7 +51,7 @@
 		<!-- Survey readout: real elevation data, not decoration -->
 		<div
 			use:reveal={{ delay: 650 }}
-			class="reveal-fade absolute top-6 left-6 flex items-center gap-3 font-mono text-[10px] tracking-[0.15em] text-paper/50 uppercase md:top-8 md:left-16"
+			class="reveal-fade absolute top-20 left-4 flex max-w-[calc(100vw-2rem)] flex-wrap items-center gap-2 font-mono text-[9px] tracking-[0.12em] text-paper/55 uppercase sm:top-6 sm:left-6 sm:gap-3 sm:text-[10px] md:top-8 md:left-16"
 		>
 			<span>06&deg;36'37"S 107&deg;22'39"E</span>
 			<span class="h-3 w-px bg-paper/30"></span>
@@ -59,7 +59,7 @@
 		</div>
 
 		<div
-			class="relative z-10 flex flex-grow flex-col justify-end px-6 pb-16 md:px-16 md:pb-20 lg:px-24"
+			class="relative z-10 flex flex-grow flex-col justify-end px-4 pb-12 sm:px-6 sm:pb-16 md:px-16 md:pb-20 lg:px-24"
 		>
 			<p
 				use:reveal
@@ -69,7 +69,7 @@
 			</p>
 			<h1
 				use:reveal={{ delay: 120 }}
-				class="reveal-up mt-4 max-w-3xl font-serif text-6xl leading-[0.95] font-light text-paper italic sm:text-7xl md:text-8xl lg:text-9xl"
+				class="reveal-up mt-4 max-w-3xl font-serif text-[clamp(3.2rem,17vw,5.8rem)] leading-[0.96] font-light text-paper italic sm:text-7xl md:text-8xl lg:text-9xl"
 			>
 				{data.activeDashboard?.title || ''}
 			</h1>
@@ -79,16 +79,16 @@
 			>
 				{data.activeDashboard?.description || ''}
 			</p>
-			<div use:reveal={{ delay: 380 }} class="reveal-up mt-10 flex items-center gap-6">
+			<div use:reveal={{ delay: 380 }} class="reveal-up mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-6">
 				<a
 					href="#potensi"
-					class="rounded-full border border-paper/70 bg-paper px-6 py-3 font-mono text-[11px] tracking-[0.15em] text-ink uppercase transition-all hover:scale-105 hover:bg-clay hover:text-paper"
+					class="rounded-full border border-paper/70 bg-paper px-6 py-3 text-center font-mono text-[11px] tracking-[0.15em] text-ink uppercase transition-all hover:scale-105 hover:bg-clay hover:text-paper"
 				>
 					Jelajahi Desa
 				</a>
 				<a
 					href="/profile"
-					class="font-mono text-[11px] tracking-[0.15em] text-paper/70 uppercase underline decoration-paper/30 underline-offset-4 transition-colors hover:text-paper hover:decoration-clay"
+					class="py-2 text-center font-mono text-[11px] tracking-[0.15em] text-paper/70 uppercase underline decoration-paper/30 underline-offset-4 transition-colors hover:text-paper hover:decoration-clay sm:text-left"
 				>
 					Lihat Profil &rarr;
 				</a>

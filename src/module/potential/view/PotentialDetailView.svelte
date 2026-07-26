@@ -12,7 +12,7 @@
 </svelte:head>
 
 {#if item}
-	<section class="w-full px-6 pt-24 pb-24 md:px-16 md:pt-28 md:pb-32 lg:px-24">
+	<section class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-32 lg:px-24">
 		<div class="mx-auto max-w-4xl">
 			<a
 				href="/potensi"

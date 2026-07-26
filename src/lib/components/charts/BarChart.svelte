@@ -60,7 +60,7 @@
 		<button
 			type="button"
 			onclick={() => toggle(i)}
-			class="grid grid-cols-[6rem_1fr] items-center gap-3 rounded-md px-2 py-1.5 text-left transition-colors sm:grid-cols-[9rem_1fr] {selected ===
+			class="grid grid-cols-1 items-center gap-2 rounded-md px-2 py-2 text-left transition-colors sm:grid-cols-[9rem_1fr] sm:gap-3 sm:py-1.5 {selected ===
 			i
 				? 'bg-clay/10'
 				: 'hover:bg-ink/[0.03]'}"
@@ -94,7 +94,7 @@
 			</div>
 			{#if selected === i}
 				<div
-					class="col-span-2 flex flex-wrap gap-x-4 gap-y-1 pt-1 font-mono text-[10px] text-ink-soft uppercase"
+					class="flex flex-wrap gap-x-4 gap-y-1 pt-1 font-mono text-[10px] text-ink-soft uppercase sm:col-span-2"
 				>
 					<span
 						>{labelA || 'Nilai'}: {row.value.toLocaleString('id-ID')} &middot; {(

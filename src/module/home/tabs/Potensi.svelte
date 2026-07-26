@@ -8,13 +8,13 @@
 
 <section
 	id="potensi"
-	class="w-full scroll-mt-24 border-t border-ink/15 px-6 py-20 md:px-16 md:py-28 lg:px-24"
+	class="w-full scroll-mt-24 border-t border-ink/15 px-4 py-16 sm:px-6 md:px-16 md:py-28 lg:px-24"
 >
 	<div class="mx-auto max-w-7xl">
 		<div use:reveal class="reveal-up flex flex-wrap items-end justify-between gap-6">
 			<div>
 				<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Potensi</p>
-				<h2 class="mt-3 max-w-lg font-serif text-4xl italic leading-tight md:text-5xl">
+				<h2 class="mobile-subtitle mt-3 max-w-lg font-serif text-4xl italic leading-tight md:text-5xl">
 					Potensi unggulan desa.
 				</h2>
 			</div>
@@ -29,7 +29,7 @@
 		{#if items.length === 0}
 			<p class="mt-14 text-sm text-ink-soft">Belum ada data potensi desa yang tersedia saat ini.</p>
 		{:else}
-			<div class="mt-14 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+			<div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:mt-14 md:grid-cols-3 md:gap-8">
 				{#each items as item, i (item.id)}
 					<a
 						href="/potensi/{item.id}"

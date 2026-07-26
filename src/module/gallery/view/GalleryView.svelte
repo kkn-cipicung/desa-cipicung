@@ -49,11 +49,11 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<section class="w-full px-6 pt-24 pb-20 md:px-16 md:pt-28 md:pb-28 lg:px-24">
+<section class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-28 lg:px-24">
 	<div class="mx-auto max-w-6xl">
 		<div use:reveal class="reveal-up">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Arsip Desa</p>
-			<h1 class="mt-3 max-w-2xl font-serif text-5xl italic leading-tight md:text-6xl">
+			<h1 class="mobile-title mt-3 max-w-2xl font-serif text-5xl italic leading-tight md:text-6xl">
 				Galeri Cipicung.
 			</h1>
 			<p class="mt-6 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
@@ -68,7 +68,7 @@
 			</div>
 		{:else}
 			<div
-				class="mt-12 grid auto-rows-[180px] grid-cols-2 gap-3 md:auto-rows-[220px] md:grid-cols-4 md:gap-4"
+				class="mt-10 grid auto-rows-[140px] grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:auto-rows-[180px] md:mt-12 md:auto-rows-[220px] md:grid-cols-4 md:gap-4"
 			>
 				{#each photos as photo, i (photo.id)}
 					<button
@@ -78,7 +78,7 @@
 						class="reveal-scale group relative overflow-hidden rounded-lg bg-ink/5 text-left {i %
 							5 ===
 						0
-							? 'row-span-2'
+							? 'sm:row-span-2'
 							: ''}"
 					>
 						<img

@@ -30,17 +30,17 @@
 	);
 </script>
 
-<section class="w-full border-t border-ink/15 px-6 py-20 md:px-16 md:py-28 lg:px-24">
-	<div class="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
+<section class="w-full border-t border-ink/15 px-4 py-16 sm:px-6 md:px-16 md:py-28 lg:px-24">
+	<div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-12 md:gap-8">
 		<div use:reveal class="reveal-up md:col-span-4">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Sekilas Desa</p>
-			<h2 class="mt-3 font-serif text-4xl leading-tight italic md:text-5xl">
+			<h2 class="mobile-subtitle mt-3 font-serif text-4xl leading-tight italic md:text-5xl">
 				{overview?.title || ''}
 			</h2>
 		</div>
 
 		<div use:reveal={{ delay: 120 }} class="reveal-scale md:col-span-3 md:col-start-6">
-			<div class="aspect-[4/5] w-full overflow-hidden rounded-sm">
+			<div class="aspect-[16/11] w-full overflow-hidden rounded-sm md:aspect-[4/5]">
 				<img
 					src={getMediaUrl(overview?.media)}
 					alt="Sekilas Desa Cipicung"
@@ -64,11 +64,11 @@
 
 		<!-- Statistik dalam kartu -->
 		<div class="md:col-span-12">
-			<div class="mt-4 grid grid-cols-2 gap-3 border-t border-ink/15 pt-8 sm:grid-cols-4">
+			<div class="mt-2 grid grid-cols-1 gap-3 border-t border-ink/15 pt-6 min-[420px]:grid-cols-2 sm:grid-cols-4 md:mt-4 md:pt-8">
 				{#each cards as card, i (card.label)}
 					<div
 						use:reveal={{ delay: i * 90 }}
-						class="reveal-up flex flex-col gap-2 rounded-lg border border-ink/12 bg-paper-dim/40 p-5 transition-colors hover:border-clay/60 hover:shadow-md"
+						class="reveal-up flex flex-col gap-2 rounded-lg border border-ink/12 bg-paper-dim/40 p-4 transition-colors hover:border-clay/60 hover:shadow-md sm:p-5"
 					>
 						<dt class="font-mono text-[10px] tracking-[0.15em] text-ink-soft uppercase">
 							{card.label}

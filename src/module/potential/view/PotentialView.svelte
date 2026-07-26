@@ -15,11 +15,11 @@
 	/>
 </svelte:head>
 
-<section class="w-full px-6 pt-24 pb-20 md:px-16 md:pt-28 md:pb-28 lg:px-24">
+<section class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-28 lg:px-24">
 	<div class="mx-auto max-w-6xl">
 		<div use:reveal class="reveal-up">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Denyut Desa</p>
-			<h1 class="mt-3 max-w-2xl font-serif text-5xl italic leading-tight md:text-6xl">
+			<h1 class="mobile-title mt-3 max-w-2xl font-serif text-5xl italic leading-tight md:text-6xl">
 				Potensi Cipicung.
 			</h1>
 			<p class="mt-6 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">

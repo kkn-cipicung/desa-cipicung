@@ -44,8 +44,8 @@
 	const active = $derived(selected !== null ? segments[selected] : null);
 </script>
 
-<div class="flex flex-col items-center gap-8 sm:flex-row sm:items-center">
-	<div class="relative h-56 w-56 shrink-0">
+<div class="flex min-w-0 flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-8">
+	<div class="relative h-48 w-48 shrink-0 sm:h-56 sm:w-56">
 		<svg viewBox="0 0 200 200" class="h-full w-full -rotate-90">
 			<circle
 				cx="100"
@@ -101,22 +101,22 @@
 		</div>
 	</div>
 
-	<ul class="flex w-full flex-col gap-1">
+	<ul class="flex min-w-0 w-full flex-col gap-1">
 		{#each segments as s, i (s.label)}
 			<li>
 				<button
 					type="button"
 					onclick={() => toggle(i)}
-					class="flex w-full items-center justify-between gap-3 rounded-md border-b border-ink/10 px-2 py-2.5 text-left transition-colors {selected ===
+					class="flex w-full items-center justify-between gap-3 rounded-md border-b border-ink/10 px-2 py-3 text-left transition-colors {selected ===
 					i
 						? 'bg-clay/10'
 						: 'hover:bg-ink/[0.03]'}"
 				>
-					<span class="flex items-center gap-2.5 text-sm text-ink">
+					<span class="flex min-w-0 items-center gap-2.5 text-sm text-ink">
 						<span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background:{s.color}"></span>
-						{s.label}
+						<span class="min-w-0 truncate">{s.label}</span>
 					</span>
-					<span class="font-mono text-xs text-ink-soft">
+					<span class="shrink-0 font-mono text-xs text-ink-soft">
 						{s.value.toLocaleString('id-ID')} &middot; {(s.share * 100).toFixed(1)}%
 					</span>
 				</button>

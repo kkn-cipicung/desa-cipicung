@@ -151,12 +151,25 @@
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
+		box-sizing: border-box;
 	}
 	body {
 		@apply bg-background text-foreground;
+		overflow-x: hidden;
 	}
 	html {
 		font-family: 'Instrument Sans', 'Plus Jakarta Sans', sans-serif;
+		overflow-x: hidden;
+		text-size-adjust: 100%;
+	}
+	img,
+	video,
+	canvas,
+	svg {
+		max-width: 100%;
+	}
+	main {
+		min-width: 0;
 	}
 }
 
@@ -175,6 +188,10 @@
 
 	/* Scroll-reveal: paired with the `reveal` action in $lib/actions/reveal.ts */
 	.reveal-up {
+		opacity: 1;
+		transform: none;
+	}
+	.reveal-up.is-reveal-ready {
 		opacity: 0;
 		transform: translateY(28px);
 		transition:
@@ -188,6 +205,9 @@
 	}
 
 	.reveal-fade {
+		opacity: 1;
+	}
+	.reveal-fade.is-reveal-ready {
 		opacity: 0;
 		transition: opacity 900ms ease-out;
 	}
@@ -196,6 +216,10 @@
 	}
 
 	.reveal-scale {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.reveal-scale.is-reveal-ready {
 		opacity: 0;
 		transform: scale(0.96);
 		transition:
@@ -214,6 +238,29 @@
 			opacity: 1 !important;
 			transform: none !important;
 			transition: none !important;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.mobile-page-section {
+			padding-inline: 1rem !important;
+			padding-top: 6rem !important;
+			padding-bottom: 4rem !important;
+		}
+
+		.mobile-section-gap {
+			margin-top: 2.75rem !important;
+		}
+
+		.mobile-title {
+			font-size: clamp(2.65rem, 13vw, 4rem) !important;
+			line-height: 0.98 !important;
+			overflow-wrap: anywhere;
+		}
+
+		.mobile-subtitle {
+			font-size: clamp(2rem, 9vw, 2.75rem) !important;
+			line-height: 1.05 !important;
 		}
 	}
 }

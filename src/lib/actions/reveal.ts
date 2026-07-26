@@ -5,6 +5,7 @@
 export function reveal(node: HTMLElement, options?: { delay?: number }) {
 	const delay = options?.delay ?? 0;
 	if (delay) node.style.transitionDelay = `${delay}ms`;
+	node.classList.add('is-reveal-ready');
 
 	// Respect users who've asked for less motion: just show it immediately.
 	if (
