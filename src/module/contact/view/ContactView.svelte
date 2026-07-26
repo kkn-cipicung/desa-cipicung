@@ -135,8 +135,8 @@
 					<div in:fly={{ y: 12, duration: 400 }} class="mt-6 border-t border-ink/15 pt-6">
 						<p class="font-serif text-2xl italic">Pesan tercatat.</p>
 						<p class="mt-2 text-sm text-ink-soft">
-							Terima kasih, {name || 'warga'}. Form ini masih contoh tampilan - hubungkan ke
-							email atau layanan formulir agar pesan benar-benar terkirim.
+							Terima kasih, {name || 'warga'}. Form ini masih contoh tampilan - hubungkan ke email
+							atau layanan formulir agar pesan benar-benar terkirim.
 						</p>
 					</div>
 				{:else}

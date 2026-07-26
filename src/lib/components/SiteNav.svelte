@@ -36,52 +36,59 @@
 
 <svelte:window onclick={handleWindowClick} />
 
-<!-- Logo: opaque pill so it never blends into a photo behind it -->
+<!-- Mobile Logo: top left pill -->
 <a
 	href="/"
-	class="group fixed top-4 right-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/95 py-1.5 pr-4 pl-1.5 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm md:top-5 md:right-6"
+	class="group fixed top-4 left-4 z-50 flex items-center gap-2 rounded-full border border-ink/15 bg-paper/20 py-1.5 pr-4 pl-1.5 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-md md:hidden"
 	aria-label="Desa Cipicung - Beranda"
 >
-	<img
-		src="/logo-cipicung.png"
-		alt="Logo Desa Cipicung"
-		class="h-7 w-7 shrink-0 object-contain md:h-8 md:w-8"
-	/>
+	<img src="/logo-cipicung.png" alt="Logo Desa Cipicung" class="h-7 w-7 shrink-0 object-contain" />
 	<span
-		class="font-sans text-xs font-semibold tracking-wide text-ink uppercase transition-colors group-hover:text-clay md:text-sm"
+		class="font-sans text-xs font-semibold tracking-wide text-ink uppercase transition-colors group-hover:text-clay"
 	>
 		Desa Cipicung
 	</span>
 </a>
 
-<!-- Desktop: centered pill navbar, links laid out inline -->
-<nav
-	aria-label="Navigasi utama"
-	class="fixed top-5 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-ink/15 bg-paper/95 px-2 py-1.5 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm md:flex"
+<!-- Desktop Header Navbar: full width attached at top with integrated logo -->
+<header
+	class="fixed top-0 left-0 right-0 z-50 hidden border-b border-ink/15 bg-paper/20 px-6 py-3.5 shadow-sm backdrop-blur-md md:flex md:items-center md:justify-between md:px-12 lg:px-20"
 >
-	{#each entries as entry (entry.href)}
-		<a
-			href={entry.href}
-			class="relative rounded-full px-4 py-1.5 font-sans text-sm transition-colors {isActive(
-				entry.href
-			)
-				? 'font-semibold text-clay'
-				: 'text-ink hover:text-clay'}"
+	<a href="/" class="group flex items-center gap-3" aria-label="Desa Cipicung - Beranda">
+		<img
+			src="/logo-cipicung.png"
+			alt="Logo Desa Cipicung"
+			class="h-8 w-8 shrink-0 object-contain"
+		/>
+		<span
+			class="font-sans text-sm font-semibold tracking-wide text-ink uppercase transition-colors group-hover:text-clay"
 		>
-			{#if isActive(entry.href)}
-				<span class="absolute inset-0 rounded-full bg-clay/10" aria-hidden="true"></span>
-			{/if}
-			<span class="relative">{entry.name}</span>
-		</a>
-	{/each}
-</nav>
+			Desa Cipicung
+		</span>
+	</a>
+
+	<nav aria-label="Navigasi utama" class="flex items-center gap-1">
+		{#each entries as entry (entry.href)}
+			<a
+				href={entry.href}
+				class="relative rounded-full px-4 py-1.5 font-sans text-sm transition-colors {isActive(
+					entry.href
+				)
+					? 'bg-clay/10 font-semibold text-clay'
+					: 'text-ink hover:bg-ink/5 hover:text-clay'}"
+			>
+				<span>{entry.name}</span>
+			</a>
+		{/each}
+	</nav>
+</header>
 
 <!-- Mobile: hamburger opens a full-width sheet, styled distinctly from desktop -->
 <button
 	id="nav-toggle"
 	type="button"
 	onclick={() => (isOpen = !isOpen)}
-	class="fixed top-4 left-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-paper/95 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-sm transition-colors hover:border-clay hover:text-clay md:hidden"
+	class="fixed top-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-ink/15 bg-paper/20 shadow-[0_4px_16px_-6px_rgba(38,51,32,0.25)] backdrop-blur-md transition-colors hover:border-clay hover:text-clay md:hidden"
 	aria-expanded={isOpen}
 	aria-controls="nav-panel"
 	aria-label={isOpen ? 'Tutup menu' : 'Buka menu'}
@@ -118,7 +125,7 @@
 	<div
 		id="nav-panel"
 		transition:fly={{ y: -12, duration: 200, easing: cubicOut }}
-		class="fixed top-[4.25rem] left-3 z-40 w-48 overflow-hidden rounded-2xl border border-ink/15 bg-paper shadow-[0_16px_36px_-12px_rgba(38,51,32,0.4)] md:hidden"
+		class="fixed top-[4.25rem] right-4 z-40 w-48 overflow-hidden rounded-2xl border border-ink/15 bg-paper/90 backdrop-blur-md shadow-[0_16px_36px_-12px_rgba(38,51,32,0.4)] md:hidden"
 	>
 		<p
 			class="border-b border-ink/10 px-3.5 pt-2.5 pb-1.5 font-mono text-[9px] tracking-[0.15em] text-ink-soft/70 uppercase"
