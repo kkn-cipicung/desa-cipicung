@@ -3,13 +3,43 @@
 	import BarChart from '$lib/components/charts/BarChart.svelte';
 	import CountUp from '$lib/components/CountUp.svelte';
 	import { reveal } from '$lib/actions/reveal';
-	const ringkasan = { penduduk: 0, kk: 0, lakiLaki: 0, perempuan: 0 };
-	const dusunSlices: { label: string; value: number; color: string }[] = [];
-	const agamaSlices: { label: string; value: number; color: string }[] = [];
-	const agamaBars: { label: string; value: number; value2?: number }[] = [];
-	const pendidikanBars: { label: string; value: number; value2?: number }[] = [];
-	const pekerjaanBars: { label: string; value: number; value2?: number }[] = [];
-	const usiaBars: { label: string; value: number }[] = [];
+	import type { InfografisResponse } from '../_model/response';
+
+	let { data }: { data: { infografis: InfografisResponse | null } } = $props();
+	const infografis = $derived(data.infografis);
+	const ringkasan = $derived({
+		penduduk: infografis?.summary.population || 0,
+		kk: infografis?.summary.family || 0,
+		lakiLaki: infografis?.summary.male || 0,
+		perempuan: infografis?.summary.female || 0
+	});
+	const chartColors = ['#8f6b4f', '#314f43', '#b58f3b', '#6f7f90', '#a45f52', '#5d6b45'];
+	const withSliceColors = (items: { label: string; value: number; color?: string }[]) =>
+		items.map((item, index) => ({
+			...item,
+			color: item.color || chartColors[index % chartColors.length]
+		}));
+	const dusunSlices = $derived(withSliceColors(infografis?.hamlets || []));
+	const agamaSlices = $derived(withSliceColors(infografis?.religions || []));
+	const agamaBars = $derived(infografis?.religion_rt || []);
+	const pendidikanBars = $derived(
+		infografis?.education.map((item) => ({
+			label: item.label,
+			value: item.male,
+			value2: item.female
+		})) || []
+	);
+	const pekerjaanBars = $derived(
+		infografis?.occupation.map((item) => ({
+			label: item.label,
+			value: item.male,
+			value2: item.female
+		})) || []
+	);
+	const usiaBars = $derived(infografis?.ages || []);
+	const source = $derived(
+		infografis?.source || 'RPJM Desa Cipicung Perubahan 2025-2029, data BPS & Posyandu 2024.'
+	);
 </script>
 
 <svelte:head>
@@ -140,7 +170,7 @@
 		</div>
 
 		<p class="mt-10 text-xs text-ink-soft/70">
-			Sumber: RPJM Desa Cipicung Perubahan 2025&ndash;2029, data BPS &amp; Posyandu 2024.
+			Sumber: {source}
 		</p>
 	</div>
 </section>

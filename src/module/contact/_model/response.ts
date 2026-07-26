@@ -13,9 +13,8 @@ export interface ContactResponse {
 		website: string;
 	};
 	social_media: {
-		platform: string;
-		handle: string;
-		url: string;
+		name: string;
+		username: string;
 	}[];
 	service_hour: {
 		day: string;

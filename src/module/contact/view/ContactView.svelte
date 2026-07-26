@@ -15,18 +15,37 @@
 		sent = true;
 	}
 
+	function socialHref(name: string, username: string) {
+		const normalizedName = name.toLowerCase();
+		const normalizedUsername = username.replace(/^@/, '');
+
+		if (!normalizedUsername) return '';
+		if (normalizedName.includes('instagram')) return `https://instagram.com/${normalizedUsername}`;
+		if (normalizedName.includes('tiktok')) return `https://www.tiktok.com/@${normalizedUsername}`;
+		if (normalizedName.includes('youtube')) return `https://www.youtube.com/@${normalizedUsername}`;
+
+		return '';
+	}
+
 	const socials = $derived.by(() => {
 		if (contactInfo?.social_media && contactInfo.social_media.length) {
 			return contactInfo.social_media.map((s) => ({
-				label: s.platform,
-				handle: s.handle,
-				href: s.url
+				label: s.name,
+				handle: s.username,
+				href: socialHref(s.name, s.username)
 			}));
 		}
 		return [];
 	});
 
 	const hours = $derived(contactInfo?.service_hour || []);
+	const mapQuery = $derived.by(() => {
+		if (!contactInfo?.office) return 'Kantor Desa Cipicung';
+
+		return [contactInfo.office.name, contactInfo.office.address, contactInfo.office.district]
+			.filter(Boolean)
+			.join(' ');
+	});
 </script>
 
 <svelte:head>
@@ -81,7 +100,7 @@
 						Media Sosial
 					</p>
 					<div class="mt-2 flex flex-col divide-y divide-ink/15 border-t border-ink/15">
-						{#each socials as s (s.label)}
+						{#each socials as s, i (s.label || i)}
 							<a
 								href={s.href}
 								target="_blank"
@@ -98,7 +117,7 @@
 				<div>
 					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jam Layanan</p>
 					<ul class="mt-2 space-y-1 text-sm text-ink-soft">
-						{#each hours as h (h.day)}
+						{#each hours as h, i (h.day || i)}
 							<li class="flex justify-between gap-6">
 								<span>{h.day}</span><span>{h.time}</span>
 							</li>
@@ -116,7 +135,7 @@
 					<div in:fly={{ y: 12, duration: 400 }} class="mt-6 border-t border-ink/15 pt-6">
 						<p class="font-serif text-2xl italic">Pesan tercatat.</p>
 						<p class="mt-2 text-sm text-ink-soft">
-							Terima kasih, {name || 'warga'}. Form ini masih contoh tampilan &mdash; hubungkan ke
+							Terima kasih, {name || 'warga'}. Form ini masih contoh tampilan - hubungkan ke
 							email atau layanan formulir agar pesan benar-benar terkirim.
 						</p>
 					</div>
@@ -166,9 +185,7 @@
 			<div class="mt-4 overflow-hidden rounded-sm border border-ink/15">
 				<iframe
 					title="Peta Lokasi Kantor Desa Cipicung"
-					src="https://www.google.com/maps?q={contactInfo?.office
-						? encodeURIComponent(contactInfo.office.name + ' ' + contactInfo.office.address)
-						: ''}&z=14&output=embed"
+					src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=14&output=embed`}
 					class="h-80 w-full md:h-96"
 					loading="lazy"
 					referrerpolicy="no-referrer-when-downgrade"
