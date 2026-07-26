@@ -21,12 +21,16 @@
 	<div class="mx-auto max-w-6xl">
 		<div use:reveal class="reveal-up">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Jelajahi</p>
-			<h2 class="mobile-subtitle mt-3 max-w-lg font-serif text-4xl italic leading-tight md:text-5xl">
+			<h2
+				class="mobile-subtitle mt-3 max-w-lg font-serif text-4xl italic leading-tight md:text-5xl"
+			>
 				Jelajahi Desa.
 			</h2>
 		</div>
 
-		<div class="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-ink/10 sm:mt-14 sm:grid-cols-2">
+		<div
+			class="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-ink/10 sm:mt-14 sm:grid-cols-2"
+		>
 			{#each cards as card, i (card.href)}
 				<a
 					href={card.href}

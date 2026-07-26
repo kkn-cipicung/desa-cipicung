@@ -45,7 +45,9 @@
 	/>
 </svelte:head>
 
-<section class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-28 lg:px-24">
+<section
+	class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-28 lg:px-24"
+>
 	<div class="mx-auto max-w-5xl">
 		<div use:reveal class="reveal-up">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Berkas Desa</p>
@@ -141,7 +143,9 @@
 						</li>
 					</ul>
 
-					<dl class="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-ink/15 pt-6 font-mono min-[420px]:grid-cols-2">
+					<dl
+						class="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-ink/15 pt-6 font-mono min-[420px]:grid-cols-2"
+					>
 						<div>
 							<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Utara</dt>
 							<dd class="mt-1 text-sm text-ink">
@@ -166,7 +170,9 @@
 						</div>
 					</dl>
 
-					<dl class="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-ink/15 pt-6 font-mono min-[420px]:grid-cols-2">
+					<dl
+						class="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 border-t border-ink/15 pt-6 font-mono min-[420px]:grid-cols-2"
+					>
 						<div>
 							<dt class="text-[11px] tracking-[0.15em] text-ink-soft uppercase">Luas Desa</dt>
 							<dd class="mt-1 text-sm text-ink">{boundary?.area || ''}</dd>

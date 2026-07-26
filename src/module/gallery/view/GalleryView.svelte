@@ -49,7 +49,9 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<section class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-28 lg:px-24">
+<section
+	class="mobile-page-section w-full px-4 pt-24 pb-16 sm:px-6 md:px-16 md:pt-28 md:pb-28 lg:px-24"
+>
 	<div class="mx-auto max-w-6xl">
 		<div use:reveal class="reveal-up">
 			<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Arsip Desa</p>

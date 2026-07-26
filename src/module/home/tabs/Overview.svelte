@@ -64,7 +64,9 @@
 
 		<!-- Statistik dalam kartu -->
 		<div class="md:col-span-12">
-			<div class="mt-2 grid grid-cols-1 gap-3 border-t border-ink/15 pt-6 min-[420px]:grid-cols-2 sm:grid-cols-4 md:mt-4 md:pt-8">
+			<div
+				class="mt-2 grid grid-cols-1 gap-3 border-t border-ink/15 pt-6 min-[420px]:grid-cols-2 sm:grid-cols-4 md:mt-4 md:pt-8"
+			>
 				{#each cards as card, i (card.label)}
 					<div
 						use:reveal={{ delay: i * 90 }}

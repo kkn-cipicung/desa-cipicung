@@ -30,7 +30,9 @@
 
 <div class="flex w-full flex-col">
 	<!-- Hero -->
-	<section class="relative flex min-h-[100svh] w-full shrink-0 flex-col overflow-hidden bg-ink sm:min-h-screen">
+	<section
+		class="relative flex min-h-[100svh] w-full shrink-0 flex-col overflow-hidden bg-ink sm:min-h-screen"
+	>
 		<img
 			src={getMediaUrl(data.activeDashboard?.media)}
 			alt={data.activeDashboard?.title || ''}
@@ -79,7 +81,10 @@
 			>
 				{data.activeDashboard?.description || ''}
 			</p>
-			<div use:reveal={{ delay: 380 }} class="reveal-up mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-6">
+			<div
+				use:reveal={{ delay: 380 }}
+				class="reveal-up mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-6"
+			>
 				<a
 					href="#potensi"
 					class="rounded-full border border-paper/70 bg-paper px-6 py-3 text-center font-mono text-[11px] tracking-[0.15em] text-ink uppercase transition-all hover:scale-105 hover:bg-clay hover:text-paper"

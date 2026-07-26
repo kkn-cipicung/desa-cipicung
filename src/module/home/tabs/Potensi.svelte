@@ -14,7 +14,9 @@
 		<div use:reveal class="reveal-up flex flex-wrap items-end justify-between gap-6">
 			<div>
 				<p class="font-mono text-[11px] tracking-[0.2em] text-clay uppercase">Potensi</p>
-				<h2 class="mobile-subtitle mt-3 max-w-lg font-serif text-4xl italic leading-tight md:text-5xl">
+				<h2
+					class="mobile-subtitle mt-3 max-w-lg font-serif text-4xl italic leading-tight md:text-5xl"
+				>
 					Potensi unggulan desa.
 				</h2>
 			</div>

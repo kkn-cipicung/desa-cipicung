@@ -33,7 +33,9 @@
 			</div>
 		</div>
 	{:else}
-		<div class="mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-4 sm:gap-4 sm:px-6 md:px-16 lg:px-24">
+		<div
+			class="mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-4 sm:gap-4 sm:px-6 md:px-16 lg:px-24"
+		>
 			{#each berita as item, i (item.id)}
 				<a
 					href="/berita/{item.id}"
