@@ -39,13 +39,6 @@
 	});
 
 	const hours = $derived(contactInfo?.service_hour || []);
-	const mapQuery = $derived.by(() => {
-		if (!contactInfo?.office) return 'Kantor Desa Cipicung';
-
-		return [contactInfo.office.name, contactInfo.office.address, contactInfo.office.district]
-			.filter(Boolean)
-			.join(' ');
-	});
 </script>
 
 <svelte:head>
@@ -181,18 +174,5 @@
 			</div>
 		</div>
 
-		<!-- Peta -->
-		<div use:reveal class="reveal-up mt-16 border-t border-ink/15 pt-10">
-			<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Lokasi</p>
-			<div class="mt-4 overflow-hidden rounded-sm border border-ink/15">
-				<iframe
-					title="Peta Lokasi Kantor Desa Cipicung"
-					src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=14&output=embed`}
-					class="h-80 w-full md:h-96"
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-				></iframe>
-			</div>
-		</div>
 	</div>
 </section>
