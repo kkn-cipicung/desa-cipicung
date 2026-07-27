@@ -37,7 +37,14 @@ export const load: PageLoad = async () => {
 			})
 		]);
 
-	const structure = officialsData && officialsData.length > 0 ? officialsData : structureData || [];
+	const structure = officialsData && officialsData.length > 0 ? [...officialsData] : structureData || [];
+	const headman = structureData?.find((item) => item.position === 'kepala-desa');
+
+	if (headman && !structure.some((item) => item.position === 'kepala-desa')) {
+		structure.unshift(headman);
+	}
+
+	structure.sort((a, b) => a.order_number - b.order_number);
 
 	return {
 		profile,
