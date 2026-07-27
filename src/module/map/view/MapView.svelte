@@ -27,11 +27,11 @@
 		return [];
 	});
 
-	const googleMapsUrl = $derived(
-		mapInfo?.coordinate
-			? `https://www.google.com/maps?q=${encodeURIComponent(mapInfo.coordinate)}`
-			: ''
-	);
+	// const googleMapsUrl = $derived(
+	// 	mapInfo?.coordinate
+	// 		? `https://www.google.com/maps?q=${encodeURIComponent(mapInfo.coordinate)}`
+	// 		: ''
+	// );
 
 	const googleMapsEmbedUrl = $derived(
 		mapInfo?.coordinate
@@ -114,23 +114,6 @@
 					</div>
 				{/each}
 			</div>
-		</div>
-
-		<div
-			use:reveal
-			class="reveal-up mt-8 flex flex-col items-start gap-4 border-t border-ink/15 pt-8 sm:flex-row sm:items-center sm:justify-between"
-		>
-			<p class="max-w-md text-sm leading-relaxed text-ink-soft">
-				Untuk navigasi dan rute menuju lokasi, buka posisi Desa Cipicung langsung di Google Maps.
-			</p>
-			<a
-				href={googleMapsUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="w-full shrink-0 rounded-full border border-ink/20 px-6 py-3 text-center font-mono text-[11px] tracking-[0.15em] text-ink uppercase transition-all hover:scale-105 hover:border-clay hover:text-clay sm:w-auto"
-			>
-				Buka di Google Maps &rarr;
-			</a>
 		</div>
 	</div>
 </section>
