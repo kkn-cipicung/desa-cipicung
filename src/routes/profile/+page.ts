@@ -37,7 +37,8 @@ export const load: PageLoad = async () => {
 			})
 		]);
 
-	const structure = structureData && structureData.length > 0 ? [...structureData] : officialsData || [];
+	const structure =
+		structureData && structureData.length > 0 ? [...structureData] : officialsData || [];
 	structure.sort((a, b) => a.order_number - b.order_number);
 
 	return {

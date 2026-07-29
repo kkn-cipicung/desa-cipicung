@@ -2,6 +2,8 @@
 	import type { NewsResponse } from '../_model/response';
 	import { reveal } from '$lib/actions/reveal';
 	import { getMediaUrl } from '../../../utils/media';
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
 	let { data }: { data: { item: NewsResponse | null; lainnya: NewsResponse[] } } = $props();
 	const item = $derived(data.item);
@@ -16,6 +18,19 @@
 			year: 'numeric'
 		});
 	};
+
+	function handleBack() {
+		if (browser) {
+			const backUrl = sessionStorage.getItem(`newsDetailBackUrl:${window.location.pathname}`);
+
+			if (backUrl && backUrl !== `${window.location.pathname}${window.location.search}`) {
+				goto(backUrl);
+				return;
+			}
+		}
+
+		goto('/berita');
+	}
 </script>
 
 <svelte:head>
@@ -26,12 +41,13 @@
 {#if item}
 	<article class="w-full px-6 pt-24 pb-20 md:px-16 md:pt-28 md:pb-28 lg:px-24">
 		<div class="mx-auto max-w-2xl">
-			<a
-				href="/berita"
+			<button
+				type="button"
+				onclick={handleBack}
 				class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase hover:text-clay"
 			>
-				&larr; Semua berita
-			</a>
+				&larr; Kembali
+			</button>
 
 			<div use:reveal class="reveal-up">
 				<div class="mt-6 flex items-center gap-2">

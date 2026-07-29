@@ -1,19 +1,9 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
 	import { reveal } from '$lib/actions/reveal';
 	import type { ContactResponse } from '../_model/response';
 
 	let { data }: { data: { contact: ContactResponse | null } } = $props();
 	const contactInfo = $derived(data.contact);
-
-	let name = $state('');
-	let message = $state('');
-	let sent = $state(false);
-
-	function handleSubmit(e: SubmitEvent) {
-		e.preventDefault();
-		sent = true;
-	}
 
 	function socialHref(name: string, username: string) {
 		const normalizedName = name.toLowerCase();
@@ -120,59 +110,6 @@
 					</ul>
 				</div>
 			</div>
-
-			<!-- Form -->
-			<div use:reveal={{ delay: 150 }} class="reveal-up md:col-span-6 md:col-start-7">
-				<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">
-					Kirim Pesan / Pengaduan
-				</p>
-				{#if sent}
-					<div in:fly={{ y: 12, duration: 400 }} class="mt-6 border-t border-ink/15 pt-6">
-						<p class="font-serif text-2xl italic">Pesan tercatat.</p>
-						<p class="mt-2 text-sm text-ink-soft">
-							Terima kasih, {name || 'warga'}. Form ini masih contoh tampilan - hubungkan ke email
-							atau layanan formulir agar pesan benar-benar terkirim.
-						</p>
-					</div>
-				{:else}
-					<form
-						onsubmit={handleSubmit}
-						in:fade={{ duration: 250 }}
-						class="mt-6 flex flex-col gap-6 border-t border-ink/15 pt-6"
-					>
-						<label class="flex flex-col gap-2">
-							<span class="font-mono text-[11px] tracking-[0.1em] text-ink-soft uppercase"
-								>Nama</span
-							>
-							<input
-								bind:value={name}
-								type="text"
-								required
-								class="border-b border-ink/25 bg-transparent py-2 text-sm text-ink outline-none transition-colors focus:border-clay"
-								placeholder="Nama Anda"
-							/>
-						</label>
-						<label class="flex flex-col gap-2">
-							<span class="font-mono text-[11px] tracking-[0.1em] text-ink-soft uppercase"
-								>Pesan</span
-							>
-							<textarea
-								bind:value={message}
-								required
-								rows="4"
-								class="resize-none border-b border-ink/25 bg-transparent py-2 text-sm text-ink outline-none transition-colors focus:border-clay"
-								placeholder="Tulis pesan atau pengaduan..."></textarea>
-						</label>
-						<button
-							type="submit"
-							class="mt-2 self-start rounded-full border border-ink bg-ink px-6 py-3 font-mono text-[11px] tracking-[0.15em] text-paper uppercase transition-all hover:scale-105 hover:border-clay hover:bg-clay active:scale-95"
-						>
-							Kirim &rarr;
-						</button>
-					</form>
-				{/if}
-			</div>
 		</div>
-
 	</div>
 </section>
