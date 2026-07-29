@@ -8,6 +8,11 @@
 	let map: LeafletMap | undefined;
 	let cipicungBounds: LatLngBounds | undefined;
 	let cipicungMinZoom: number | undefined;
+	let {
+		googleMapsUrl = 'https://www.google.com/maps?q=Desa%20Cipicung%20Sukatani%20Purwakarta'
+	}: {
+		googleMapsUrl?: string;
+	} = $props();
 
 	const villageCenter: LatLngExpression = [-6.6102544, 107.3774396];
 	const worldRingLonLat: Position[] = [
@@ -141,6 +146,15 @@
 
 	<div class="badge">Citra satelit &copy; Esri</div>
 	<button class="recenter-btn" type="button" onclick={recenter}>Pusatkan ke Cipicung</button>
+	<a
+		class="gmaps-btn"
+		href={googleMapsUrl}
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label="Buka lokasi Desa Cipicung di Google Maps"
+	>
+		Buka di Google Maps
+	</a>
 </div>
 
 <style>
@@ -213,6 +227,25 @@
 	}
 
 	.recenter-btn:hover {
+		background: #f5f5f5;
+	}
+
+	.gmaps-btn {
+		position: absolute;
+		top: 52px;
+		right: 10px;
+		z-index: 480;
+		border: 1px solid rgb(0 0 0 / 0.2);
+		border-radius: 4px;
+		background: #fff;
+		padding: 6px 10px;
+		color: #222;
+		font-size: 12px;
+		text-decoration: none;
+		box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+	}
+
+	.gmaps-btn:hover {
 		background: #f5f5f5;
 	}
 

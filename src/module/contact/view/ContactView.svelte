@@ -47,69 +47,94 @@
 			</h1>
 		</div>
 
-		<div class="mt-16 grid grid-cols-1 gap-16 md:grid-cols-12">
-			<!-- Info -->
-			<div use:reveal class="reveal-up flex flex-col gap-10 md:col-span-5">
-				<div>
-					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Kantor</p>
-					{#if contactInfo?.office}
-						<p class="mt-2 text-sm leading-relaxed text-ink md:text-base">
-							{contactInfo.office.name || ''}<br />
-							Kecamatan {contactInfo.office.district || ''}, Kabupaten {contactInfo.office
-								.regency || ''}<br />
-							{contactInfo.office.province || ''}, {contactInfo.office.postal_code || ''}
-						</p>
-					{:else}
-						<p class="mt-2 text-sm leading-relaxed text-ink md:text-base"></p>
-					{/if}
+		<div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+			<section use:reveal class="reveal-up">
+				<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">
+					Kantor &amp; Kontak
+				</p>
+				{#if contactInfo?.office}
+					<h2 class="mt-4 font-serif text-3xl leading-tight text-ink italic">
+						{contactInfo.office.name || 'Kantor Desa Cipicung'}
+					</h2>
+					<p class="mt-4 text-sm leading-relaxed text-ink-soft md:text-base">
+						{contactInfo.office.address || ''}<br />
+						Kecamatan {contactInfo.office.district || ''}, Kabupaten {contactInfo.office.regency ||
+							''}<br />
+						{contactInfo.office.province || ''}, {contactInfo.office.postal_code || ''}
+					</p>
+				{/if}
+
+				<div class="mt-8 grid grid-cols-1 gap-4 border-t border-ink/15 pt-6 sm:grid-cols-2">
+					<div>
+						<p class="font-mono text-[10px] tracking-[0.15em] text-ink-soft uppercase">Email</p>
+						<a
+							href="mailto:{contactInfo?.contact?.email || ''}"
+							class="mt-2 block break-words text-sm text-ink underline decoration-ink/20 underline-offset-4 hover:text-clay hover:decoration-clay"
+						>
+							{contactInfo?.contact?.email || '-'}
+						</a>
+					</div>
+					<div>
+						<p class="font-mono text-[10px] tracking-[0.15em] text-ink-soft uppercase">Telepon</p>
+						<a
+							href="tel:{contactInfo?.contact?.phone || ''}"
+							class="mt-2 block text-sm text-ink underline decoration-ink/20 underline-offset-4 hover:text-clay hover:decoration-clay"
+						>
+							{contactInfo?.contact?.phone || '-'}
+						</a>
+					</div>
 				</div>
 
-				<div>
-					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Kontak</p>
+				{#if contactInfo?.contact?.website}
 					<a
-						href="mailto:{contactInfo?.contact?.email || ''}"
-						class="mt-2 block text-sm text-ink underline decoration-ink/20 underline-offset-4 hover:text-clay hover:decoration-clay md:text-base"
+						href={contactInfo.contact.website}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="mt-6 inline-flex rounded-full border border-ink/20 px-5 py-3 font-mono text-[11px] tracking-[0.15em] text-ink uppercase transition-all hover:border-clay hover:text-clay"
 					>
-						{contactInfo?.contact?.email || ''}
+						Kunjungi Website
 					</a>
-					<a
-						href="tel:{contactInfo?.contact?.phone || ''}"
-						class="mt-1 block text-sm text-ink underline decoration-ink/20 underline-offset-4 hover:text-clay hover:decoration-clay md:text-base"
-					>
-						{contactInfo?.contact?.phone || ''}
-					</a>
+				{/if}
+			</section>
+
+			<section use:reveal={{ delay: 120 }} class="reveal-up">
+				<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">
+					Layanan &amp; Kanal
+				</p>
+
+				<div class="mt-5">
+					<p class="font-mono text-[10px] tracking-[0.15em] text-ink-soft uppercase">Jam Layanan</p>
+					<ul class="mt-3 divide-y divide-ink/15 border-y border-ink/15 text-sm">
+						{#each hours as h, i (h.day || i)}
+							<li class="flex justify-between gap-6 py-3">
+								<span class="text-ink">{h.day}</span>
+								<span class="text-right font-mono text-xs text-ink-soft">{h.time}</span>
+							</li>
+						{/each}
+					</ul>
 				</div>
 
-				<div>
-					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">
+				<div class="mt-8">
+					<p class="font-mono text-[10px] tracking-[0.15em] text-ink-soft uppercase">
 						Media Sosial
 					</p>
-					<div class="mt-2 flex flex-col divide-y divide-ink/15 border-t border-ink/15">
+					<div class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
 						{#each socials as s, i (s.label || i)}
 							<a
 								href={s.href}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="group flex items-center justify-between py-3"
+								class="group border-t border-ink/15 py-3 transition-colors"
 							>
-								<span class="text-sm text-ink group-hover:text-clay">{s.label}</span>
-								<span class="font-mono text-xs text-ink-soft">{s.handle}</span>
+								<span class="block text-sm text-ink group-hover:text-clay">{s.label}</span>
+								<span class="mt-1 block break-words font-mono text-xs text-ink-soft"
+									>{s.handle}</span
+								>
 							</a>
 						{/each}
 					</div>
 				</div>
-
-				<div>
-					<p class="font-mono text-[11px] tracking-[0.15em] text-ink-soft uppercase">Jam Layanan</p>
-					<ul class="mt-2 space-y-1 text-sm text-ink-soft">
-						{#each hours as h, i (h.day || i)}
-							<li class="flex justify-between gap-6">
-								<span>{h.day}</span><span>{h.time}</span>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			</div>
+			</section>
 		</div>
 	</div>
 </section>

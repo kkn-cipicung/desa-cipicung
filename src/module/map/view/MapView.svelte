@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import CipicungMap from '../components/CipicungMap.svelte';
+	import CipicungMap from '../components/CipicungMap.svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import type { MapResponse } from '../_model/response';
 
@@ -8,6 +8,11 @@
 
 	const elevation = $derived(mapInfo?.elevation || '');
 	const coordinate = $derived(mapInfo?.coordinate || '');
+	const googleMapsUrl = $derived(
+		mapInfo?.coordinate
+			? `https://www.google.com/maps?q=${encodeURIComponent(mapInfo.coordinate)}`
+			: 'https://www.google.com/maps?q=Desa%20Cipicung%20Sukatani%20Purwakarta'
+	);
 
 	const dusunList = $derived.by(() => {
 		if (mapInfo) {
@@ -26,18 +31,6 @@
 		}
 		return [];
 	});
-
-	// const googleMapsUrl = $derived(
-	// 	mapInfo?.coordinate
-	// 		? `https://www.google.com/maps?q=${encodeURIComponent(mapInfo.coordinate)}`
-	// 		: ''
-	// );
-
-	const googleMapsEmbedUrl = $derived(
-		mapInfo?.coordinate
-			? `https://www.google.com/maps?q=${encodeURIComponent(mapInfo.coordinate)}&z=14&output=embed`
-			: 'https://www.google.com/maps?q=Desa%20Cipicung%20Sukatani%20Purwakarta&z=14&output=embed'
-	);
 </script>
 
 <svelte:head>
@@ -68,14 +61,7 @@
 				use:reveal={{ delay: 100 }}
 				class="reveal-scale overflow-hidden rounded-sm border border-ink/15 lg:col-span-8"
 			>
-				<iframe
-					title="Peta Lokasi Desa Cipicung"
-					src={googleMapsEmbedUrl}
-					class="h-[420px] w-full md:h-[560px]"
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-				></iframe>
-				<!-- <CipicungMap /> -->
+				<CipicungMap {googleMapsUrl} />
 			</div>
 
 			<!-- Informasi lokasi -->
